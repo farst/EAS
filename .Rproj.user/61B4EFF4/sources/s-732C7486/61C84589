@@ -1,0 +1,23 @@
+{
+    "collab_server" : "",
+    "contents" : "",
+    "created" : 1592746746471.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3300095068",
+    "id" : "61C84589",
+    "lastKnownWriteTime" : 1593022989,
+    "last_content_update" : 1593022989476,
+    "path" : "~/My computer/Projects/R-DSTART/secondTraj.R",
+    "project_path" : "secondTraj.R",
+    "properties" : {
+        "cursorPosition" : "10,2",
+        "scrollLine" : "0",
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 5,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

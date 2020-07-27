@@ -18,13 +18,14 @@ trajectory1 <- trajectory(name = "mining&refining") %>%
 
 env <- simmer()
 env %>% 
+  add_generator(name_prefix = "beat", trajectory = trajectory1,
+                distribution = at(seq(0, 100, 10))) %>% 
   add_resource(name = paramList$miningModule$name,
                capacity = paramList$miningModule$initialCapacity,
-               queue_size = 0) %>% 
+               queue_size = 0) %>% #get_attribute("ore.pop") %>% 
   add_resource(name = paramList$processingModule$name,
                capacity = paramList$processingModule$initialCapacity,
                queue_size = paramList$oreStorage$initialCapacity) %>% 
-  add_generator(name_prefix = "beat", trajectory = trajectory1,
-                distribution = at(seq(0, 100, 10))) %>% 
   run()
 env %>% run()
+DT <- as.data.table(env %>% get_mon_attributes())

@@ -104,3 +104,31 @@ Changes not staged for commit:
 
 no changes added to commit
 ]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ git add .
+]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ git coomit -m "files removed"
+git: 'coomit' is not a git command. See 'git --help'.
+
+The most similar command is
+	commit
+]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ git commit -m "files removed"
+[master 19c24b2] files removed
+ 5 files changed, 96 insertions(+), 2 deletions(-)
+ rewrite .Rproj.user/61B4EFF4/console06/INDEX001 (71%)
+ delete mode 100644 Jerry Banks, John S. Carson II, Barry L. Nelson, David M. Nicol - Discrete-Event System Simulation-Pearson (2013).pdf
+ delete mode 100644 Kofman, Ernesto_ Muzu, Alexandre_ Zeigler, Bernard P et al. - Theory of modeling and simulation_ discrete event and iterative system computational foundations-Elsevier, Academic Press (2019).pdf
+]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ git push 
+error: cannot run rpostback-askpass: No such file or directory
+Username for 'https://github.com': darsr     farst
+error: cannot run rpostback-askpass: No such file or directory
+Password for 'https://farst@github.com': 
+Enumerating objects: 15, done.
+Counting objects:   6% (1/15)Counting objects:  13% (2/15)Counting objects:  20% (3/15)Counting objects:  26% (4/15)Counting objects:  33% (5/15)Counting objects:  40% (6/15)Counting objects:  46% (7/15)Counting objects:  53% (8/15)Counting objects:  60% (9/15)Counting objects:  66% (10/15)Counting objects:  73% (11/15)Counting objects:  80% (12/15)Counting objects:  86% (13/15)Counting objects:  93% (14/15)Counting objects: 100% (15/15)Counting objects: 100% (15/15), done.
+Delta compression using up to 4 threads
+Compressing objects:  12% (1/8)Compressing objects:  25% (2/8)Compressing objects:  37% (3/8)Compressing objects:  50% (4/8)Compressing objects:  62% (5/8)Compressing objects:  75% (6/8)Compressing objects:  87% (7/8)Compressing objects: 100% (8/8)Compressing objects: 100% (8/8), done.
+Writing objects:  12% (1/8)Writing objects:  25% (2/8)Writing objects:  37% (3/8)Writing objects:  50% (4/8)Writing objects:  62% (5/8)Writing objects:  75% (6/8)Writing objects:  87% (7/8)Writing objects: 100% (8/8)Writing objects: 100% (8/8), 2.76 KiB | 104.00 KiB/s, done.
+Total 8 (delta 4), reused 0 (delta 0)
+remote: Resolving deltas:   0% (0/4)[Kremote: Resolving deltas:  25% (1/4)[Kremote: Resolving deltas:  50% (2/4)[Kremote: Resolving deltas:  75% (3/4)[Kremote: Resolving deltas: 100% (4/4)[Kremote: Resolving deltas: 100% (4/4), completed with 4 local objects.[K
+To https://github.com/farst/EAS.git
+   8242933..19c24b2  master -> master
+]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ [KMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ [KMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ git oysh[K[K[K[Kpush
+Everything up-to-date
+]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ i[Kgit add .

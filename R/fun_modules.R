@@ -1,7 +1,7 @@
 # process
 #' @description a function to add to population
 #' the concept is simple: a process is described which consumes i units of an entity
-#' in order to creat o units of another entity. At the final step, the process will
+#' in order to create o units of another entity. At the final step, the process will
 #' bump up the selected attribute to the entity.
 #'  
 #' @param .trj the trajectory object
@@ -24,12 +24,20 @@ process <- function(.trj, consumes, creates, i, o, att){
              ,values = o
              ,mod = "+"
              ,init = 0)
+  prod.storage <- paste0(creates, ".storage")
+  assignOnTraj(.trj = .trj
+              , storage = prod.storage
+              , value = o)
   key.cons <- paste0(consumes, ".pop")
   set_global(.trj = .trj
              ,keys = key.cons
              ,values = - i
              ,mod = "+"
              ,init = 0)
+  cons.storage <- paste0(consumes, ".storage")
+  assignOnTraj(.trj = .trj
+              , storage = cons.storage
+              , value = -i)
   log_(.trj = .trj
        ,paste0(i, " unit of ", consumes, " turned into ", o, " unit of ", creates)
        ,level = 2 )
@@ -83,4 +91,21 @@ assemble <- function(.trj , rcp, att){
        return(.trj)
 }
 
-# checkComponentPriority
+# check feasibility
+checkAvailability <- function(items, book){
+  flag <- TRUE
+  for (item in items) {
+    tmpFlag <- book[[item]] > 0
+    flag <- tmpFlag&&flag
+  }
+  return(flag)
+}
+
+# add to storage stock
+assignOnTraj <- function(.trj, storage, value, env = .GlobalEnv){
+  if (exists(storage, env)) {
+    repValue <- get(storage) + value
+  } else {repValue <- value}
+  assign(storage, repValue, envir = env)
+  return(.trj)
+}

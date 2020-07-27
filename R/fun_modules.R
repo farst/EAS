@@ -53,10 +53,10 @@ process <- function(.trj, consumes, creates, i, o, att){
 }
 
 # assemble
-#' @description a function to implement assembly semanticly
+#' @description a function to perform a parametric assembly
 #' 
 #' @param .trj the trajectory object
-#' @param rcp is a set of pairs. Each pair consits of a character and a numeric.
+#' @param rcp is a list of pairs. Each pair consits of a character and a numeric.
 #' the character is the name of the entity and the numeric is the number of units.
 #' the sign of numeric indicates consumption of creation.
 #' 
@@ -70,15 +70,15 @@ process <- function(.trj, consumes, creates, i, o, att){
 
 assemble <- function(.trj , rcp, att){
   for (i in length(rcp)) {
-    key.pop <- paste0(rcp[i][1],"pop")
+    key.pop <- paste0(rcp[[i]][1],".pop")
     set_global(.trj = .trj
                ,keys = key.pop
-               ,values = rcp[i][2]
+               ,values = as.numeric(rcp[[i]][2])
                ,mod = "+"
                ,init = 0)
   }
   log_(.trj = .trj
-       ,paste0("Recipe successfully assembled. A new ", rcp[1][1], " added to the system.")
+       ,paste0("Recipe successfully assembled. A new ", rcp[[1]][1], " added to the system.")
                ,level = 2)
        set_attribute(.trj = .trj
                      ,keys = att
@@ -102,10 +102,12 @@ checkAvailability <- function(items, book){
 }
 
 # add to storage stock
-assignOnTraj <- function(.trj, storage, value, env = .GlobalEnv){
-  if (exists(storage, env)) {
-    repValue <- get(storage) + value
-  } else {repValue <- value}
-  assign(storage, repValue, envir = env)
+addOnTraj <- function(.trj, masterBook = paramList, entity, value, env = .GlobalEnv){
+  if (exists(masterBook[[entity]], env)) {
+    masterBook[[entity]] <- masterBook[[entity]] + value
+  } else {message(
+    paste0("entity ", entity, " doesn't exist in the ", char(masterBook))
+  )
+    }
   return(.trj)
 }

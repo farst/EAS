@@ -132,3 +132,16 @@ To https://github.com/farst/EAS.git
 ]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ [KMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ [KMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ git oysh[K[K[K[Kpush
 Everything up-to-date
 ]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ i[Kgit add .
+]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ git p[Kcommit -m "traj is [K[K[K[K[K[K[K[Kbase layer is running"
+[master ab38fca] base layer is running
+ 28 files changed, 385 insertions(+), 67 deletions(-)
+ create mode 100644 .Rproj.user/61B4EFF4/sources/prop/C6CAA43F
+ create mode 100644 .Rproj.user/61B4EFF4/sources/s-732C7486/77602463
+ create mode 100644 .Rproj.user/61B4EFF4/sources/s-732C7486/77602463-contents
+ create mode 100644 .Rproj.user/61B4EFF4/sources/s-732C7486/9144CF85-contents
+ create mode 100644 .Rproj.user/61B4EFF4/sources/s-732C7486/BE3B4A0D
+ create mode 100644 .Rproj.user/61B4EFF4/sources/s-732C7486/BE3B4A0D-contents
+ create mode 100644 .Rproj.user/61B4EFF4/sources/s-732C7486/E03B852C
+ create mode 100644 .Rproj.user/61B4EFF4/sources/s-732C7486/E03B852C-contents
+ create mode 100644 trajectories.R
+]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ git add[K[K[K[K[K[K[Kgit add .

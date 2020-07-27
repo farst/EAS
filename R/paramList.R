@@ -57,13 +57,16 @@ paramList <- list(
       name = "ore"
     ),
     refinedMaterial = list(
-      name = "refinedMaterian"
+      name = "refinedMaterial"
     ),
     shell = list(
       name = "shell"
     ),
     equipment = list(
       name = "equipment"
+    ),
+    habitation = list(
+      name = "habitation"
     )
   ),
   resource = list(

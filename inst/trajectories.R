@@ -1,8 +1,9 @@
-library(simmer)
-library(ggplot2)
-library(data.table)
-
-env <- simmer()
+sandGlass <- trajectory(name = "sandGlass") %>% 
+  log_("time flies ...") %>% 
+  #activate("asteroid_dust") %>% 
+  timeout(1) %>% 
+  send("mine") %>% 
+  rollback(5)
 
 miningTraj <- trajectory(name = "mining") %>%
   seize(resource = paramList$miningModule$name) %>% 

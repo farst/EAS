@@ -145,3 +145,115 @@ Everything up-to-date
  create mode 100644 .Rproj.user/61B4EFF4/sources/s-732C7486/E03B852C-contents
  create mode 100644 trajectories.R
 ]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ git add[K[K[K[K[K[K[Kgit add .
+]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ git commit -m "files shuffled"
+[master 96c6748] files shuffled
+ 26 files changed, 202 insertions(+), 246 deletions(-)
+ create mode 100644 .Rproj.user/61B4EFF4/sources/prop/D0E6C4B2
+ delete mode 100644 .Rproj.user/61B4EFF4/sources/s-732C7486/2CB4809
+ delete mode 100644 .Rproj.user/61B4EFF4/sources/s-732C7486/61C84589
+ delete mode 100644 .Rproj.user/61B4EFF4/sources/s-732C7486/77602463
+ delete mode 100644 .Rproj.user/61B4EFF4/sources/s-732C7486/81A9AFE7
+ create mode 100644 .Rproj.user/61B4EFF4/sources/s-732C7486/ACCE44FB-contents
+ delete mode 100644 .Rproj.user/61B4EFF4/sources/s-732C7486/BE3B4A0D
+ delete mode 100644 .Rproj.user/61B4EFF4/sources/s-732C7486/E03B852C
+ delete mode 100644 .Rproj.user/61B4EFF4/sources/s-732C7486/E959D0EE
+ create mode 100644 R/.DS_Store
+ rename paramList.R => R/paramList.R (94%)
+ create mode 100644 inst/.DS_Store
+ create mode 100644 inst/baseLayer.R
+ rename secondTraj.R => inst/secondTraj.R (91%)
+ create mode 100644 inst/trajectories.R
+ delete mode 100644 trajectories.R
+]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ git push
+Enumerating objects: 92, done.
+Counting objects:   1% (1/91)Counting objects:   2% (2/91)Counting objects:   3% (3/91)Counting objects:   4% (4/91)Counting objects:   5% (5/91)Counting objects:   6% (6/91)Counting objects:   7% (7/91)Counting objects:   8% (8/91)Counting objects:   9% (9/91)Counting objects:  10% (10/91)Counting objects:  12% (11/91)Counting objects:  13% (12/91)Counting objects:  14% (13/91)Counting objects:  15% (14/91)Counting objects:  16% (15/91)Counting objects:  17% (16/91)Counting objects:  18% (17/91)Counting objects:  19% (18/91)Counting objects:  20% (19/91)Counting objects:  21% (20/91)Counting objects:  23% (21/91)Counting objects:  24% (22/91)Counting objects:  25% (23/91)Counting objects:  26% (24/91)Counting objects:  27% (25/91)Counting objects:  28% (26/91)Counting objects:  29% (27/91)Counting objects:  30% (28/91)Counting objects:  31% (29/91)Counting objects:  32% (30/91)Counting objects:  34% (31/91)Counting objects:  35% (32/91)Counting objects:  36% (33/91)Counting objects:  37% (34/91)Counting objects:  38% (35/91)Counting objects:  39% (36/91)Counting objects:  40% (37/91)Counting objects:  41% (38/91)Counting objects:  42% (39/91)Counting objects:  43% (40/91)Counting objects:  45% (41/91)Counting objects:  46% (42/91)Counting objects:  47% (43/91)Counting objects:  48% (44/91)Counting objects:  49% (45/91)Counting objects:  50% (46/91)Counting objects:  51% (47/91)Counting objects:  52% (48/91)Counting objects:  53% (49/91)Counting objects:  54% (50/91)Counting objects:  56% (51/91)Counting objects:  57% (52/91)Counting objects:  58% (53/91)Counting objects:  59% (54/91)Counting objects:  60% (55/91)Counting objects:  61% (56/91)Counting objects:  62% (57/91)Counting objects:  63% (58/91)Counting objects:  64% (59/91)Counting objects:  65% (60/91)Counting objects:  67% (61/91)Counting objects:  68% (62/91)Counting objects:  69% (63/91)Counting objects:  70% (64/91)Counting objects:  71% (65/91)Counting objects:  72% (66/91)Counting objects:  73% (67/91)Counting objects:  74% (68/91)Counting objects:  75% (69/91)Counting objects:  76% (70/91)Counting objects:  78% (71/91)Counting objects:  79% (72/91)Counting objects:  80% (73/91)Counting objects:  81% (74/91)Counting objects:  82% (75/91)Counting objects:  83% (76/91)Counting objects:  84% (77/91)Counting objects:  85% (78/91)Counting objects:  86% (79/91)Counting objects:  87% (80/91)Counting objects:  89% (81/91)Counting objects:  90% (82/91)Counting objects:  91% (83/91)Counting objects:  92% (84/91)Counting objects:  93% (85/91)Counting objects:  94% (86/91)Counting objects:  95% (87/91)Counting objects:  96% (88/91)Counting objects:  97% (89/91)Counting objects:  98% (90/91)Counting objects: 100% (91/91)Counting objects: 100% (91/91), done.
+Delta compression using up to 4 threads
+Compressing objects:   1% (1/60)Compressing objects:   3% (2/60)Compressing objects:   5% (3/60)Compressing objects:   6% (4/60)Compressing objects:   8% (5/60)Compressing objects:  10% (6/60)Compressing objects:  11% (7/60)Compressing objects:  13% (8/60)Compressing objects:  15% (9/60)Compressing objects:  16% (10/60)Compressing objects:  18% (11/60)Compressing objects:  20% (12/60)Compressing objects:  21% (13/60)Compressing objects:  23% (14/60)Compressing objects:  25% (15/60)Compressing objects:  26% (16/60)Compressing objects:  28% (17/60)Compressing objects:  30% (18/60)Compressing objects:  31% (19/60)Compressing objects:  33% (20/60)Compressing objects:  35% (21/60)Compressing objects:  36% (22/60)Compressing objects:  38% (23/60)Compressing objects:  40% (24/60)Compressing objects:  41% (25/60)Compressing objects:  43% (26/60)Compressing objects:  45% (27/60)Compressing objects:  46% (28/60)Compressing objects:  48% (29/60)Compressing objects:  50% (30/60)Compressing objects:  51% (31/60)Compressing objects:  53% (32/60)Compressing objects:  55% (33/60)Compressing objects:  56% (34/60)Compressing objects:  58% (35/60)Compressing objects:  60% (36/60)Compressing objects:  61% (37/60)Compressing objects:  63% (38/60)Compressing objects:  65% (39/60)Compressing objects:  66% (40/60)Compressing objects:  68% (41/60)Compressing objects:  70% (42/60)Compressing objects:  71% (43/60)Compressing objects:  73% (44/60)Compressing objects:  75% (45/60)Compressing objects:  76% (46/60)Compressing objects:  78% (47/60)Compressing objects:  80% (48/60)Compressing objects:  81% (49/60)Compressing objects:  83% (50/60)Compressing objects:  85% (51/60)Compressing objects:  86% (52/60)Compressing objects:  88% (53/60)Compressing objects:  90% (54/60)Compressing objects:  91% (55/60)Compressing objects:  93% (56/60)Compressing objects:  95% (57/60)Compressing objects:  96% (58/60)Compressing objects:  98% (59/60)Compressing objects: 100% (60/60)Compressing objects: 100% (60/60), done.
+Writing objects:   1% (1/62)Writing objects:   3% (2/62)Writing objects:   4% (3/62)Writing objects:   6% (4/62)Writing objects:   8% (5/62)Writing objects:   9% (6/62)Writing objects:  11% (7/62)Writing objects:  12% (8/62)Writing objects:  14% (9/62)Writing objects:  16% (10/62)Writing objects:  17% (11/62)Writing objects:  19% (12/62)Writing objects:  20% (13/62)Writing objects:  22% (14/62)Writing objects:  24% (15/62)Writing objects:  25% (16/62)Writing objects:  27% (17/62)Writing objects:  29% (18/62)Writing objects:  30% (19/62)Writing objects:  33% (21/62)Writing objects:  35% (22/62)Writing objects:  37% (23/62)Writing objects:  38% (24/62)Writing objects:  40% (25/62)Writing objects:  43% (27/62)Writing objects:  45% (28/62)Writing objects:  46% (29/62)Writing objects:  48% (30/62)Writing objects:  50% (31/62)Writing objects:  51% (32/62)Writing objects:  53% (33/62)Writing objects:  56% (35/62)Writing objects:  58% (36/62)Writing objects:  59% (37/62)Writing objects:  61% (38/62)Writing objects:  62% (39/62)Writing objects:  64% (40/62)Writing objects:  66% (41/62)Writing objects:  67% (42/62)Writing objects:  69% (43/62)Writing objects:  70% (44/62)Writing objects:  72% (45/62)Writing objects:  74% (46/62)Writing objects:  75% (47/62)Writing objects:  77% (48/62)Writing objects:  79% (49/62)Writing objects:  80% (50/62)Writing objects:  82% (51/62)Writing objects:  83% (52/62)Writing objects:  85% (53/62)Writing objects:  87% (54/62)Writing objects:  88% (55/62)Writing objects:  90% (56/62)Writing objects:  91% (57/62)Writing objects:  93% (58/62)Writing objects:  95% (59/62)Writing objects:  96% (60/62)Writing objects:  98% (61/62)Writing objects: 100% (62/62)Writing objects: 100% (62/62), 10.08 KiB | 93.00 KiB/s, done.
+Total 62 (delta 31), reused 0 (delta 0)
+remote: Resolving deltas:   0% (0/31)[Kremote: Resolving deltas:   3% (1/31)[Kremote: Resolving deltas:   6% (2/31)[Kremote: Resolving deltas:   9% (3/31)[Kremote: Resolving deltas:  16% (5/31)[Kremote: Resolving deltas:  19% (6/31)[Kremote: Resolving deltas:  22% (7/31)[Kremote: Resolving deltas:  29% (9/31)[Kremote: Resolving deltas:  35% (11/31)[Kremote: Resolving deltas:  38% (12/31)[Kremote: Resolving deltas:  45% (14/31)[Kremote: Resolving deltas:  54% (17/31)[Kremote: Resolving deltas:  58% (18/31)[Kremote: Resolving deltas:  61% (19/31)[Kremote: Resolving deltas:  64% (20/31)[Kremote: Resolving deltas:  70% (22/31)[Kremote: Resolving deltas:  74% (23/31)[Kremote: Resolving deltas:  80% (25/31)[Kremote: Resolving deltas:  83% (26/31)[Kremote: Resolving deltas:  87% (27/31)[Kremote: Resolving deltas:  93% (29/31)[Kremote: Resolving deltas:  96% (30/31)[Kremote: Resolving deltas: 100% (31/31)[Kremote: Resolving deltas: 100% (31/31), completed with 17 local objects.[K
+To https://github.com/farst/EAS.git
+   19c24b2..96c6748  master -> master
+]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ git status\[K
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	[31mmodified:   .DS_Store[m
+	[31mmodified:   .Rproj.user/61B4EFF4/console06/D79D4728[m
+	[31mmodified:   .Rproj.user/61B4EFF4/sources/prop/INDEX[m
+	[31mmodified:   inst/.DS_Store[m
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	[31m.Rproj.user/61B4EFF4/sources/prop/E204F294[m
+	[31m.Rproj.user/61B4EFF4/sources/s-732C7486/18E68F47[m
+	[31m.Rproj.user/61B4EFF4/sources/s-732C7486/18E68F47-contents[m
+	[31m.Rproj.user/61B4EFF4/sources/s-732C7486/DBD9002C[m
+	[31m.Rproj.user/61B4EFF4/sources/s-732C7486/DBD9002C-contents[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+]0;~/My computer/Projects/R-DSTART[?1034hMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ [KMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	[31mmodified:   .DS_Store[m
+	[31mmodified:   .Rproj.user/61B4EFF4/console06/D79D4728[m
+	[31mmodified:   .Rproj.user/61B4EFF4/console06/INDEX001[m
+	[31mmodified:   .Rproj.user/61B4EFF4/pcs/files-pane.pper[m
+	[31mmodified:   .Rproj.user/61B4EFF4/pcs/windowlayoutstate.pper[m
+	[31mmodified:   .Rproj.user/61B4EFF4/pcs/workbench-pane.pper[m
+	[31mmodified:   .Rproj.user/61B4EFF4/sources/prop/49625A7F[m
+	[31mmodified:   .Rproj.user/61B4EFF4/sources/prop/D0E6C4B2[m
+	[31mmodified:   .Rproj.user/61B4EFF4/sources/prop/INDEX[m
+	[31mmodified:   .Rproj.user/61B4EFF4/sources/s-732C7486/1F67761D[m
+	[31mmodified:   .Rproj.user/61B4EFF4/sources/s-732C7486/1F67761D-contents[m
+	[31mmodified:   .gitignore[m
+	[31mmodified:   R/fun_modules.R[m
+	[31mmodified:   R/paramList.R[m
+	[31mmodified:   inst/.DS_Store[m
+	[31mmodified:   inst/baseLayer.R[m
+	[31mmodified:   inst/trajectories.R[m
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	[31mRplot.png[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ git add .[K[K[K[K[K[K[K[K[Kgit status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	[31mmodified:   .DS_Store[m
+	[31mmodified:   .Rproj.user/61B4EFF4/console06/D79D4728[m
+	[31mmodified:   .Rproj.user/61B4EFF4/console06/D79D4728.env[m
+	[31mmodified:   .Rproj.user/61B4EFF4/console06/INDEX001[m
+	[31mmodified:   .Rproj.user/61B4EFF4/pcs/files-pane.pper[m
+	[31mmodified:   .Rproj.user/61B4EFF4/pcs/windowlayoutstate.pper[m
+	[31mmodified:   .Rproj.user/61B4EFF4/pcs/workbench-pane.pper[m
+	[31mmodified:   .Rproj.user/61B4EFF4/sources/prop/49625A7F[m
+	[31mmodified:   .Rproj.user/61B4EFF4/sources/prop/D0E6C4B2[m
+	[31mmodified:   .Rproj.user/61B4EFF4/sources/prop/INDEX[m
+	[31mmodified:   .Rproj.user/61B4EFF4/sources/s-732C7486/1F67761D[m
+	[31mmodified:   .Rproj.user/61B4EFF4/sources/s-732C7486/1F67761D-contents[m
+	[31mmodified:   .gitignore[m
+	[31mmodified:   R/fun_modules.R[m
+	[31mmodified:   R/paramList.R[m
+	[31mmodified:   inst/.DS_Store[m
+	[31mmodified:   inst/baseLayer.R[m
+	[31mmodified:   inst/trajectories.R[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ git add .

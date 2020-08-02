@@ -54,25 +54,30 @@ paramList <- list(
   ),
   entity = list(
     ore = list(
-      name = "ore"
+      name = "ore",
+      initial.pop = 10
     ),
     refinedMaterial = list(
-      name = "refinedMaterial"
+      name = "refinedMaterial",
+      initial.pop = 10
     ),
     shell = list(
-      name = "shell"
+      name = "shell",
+      initial.pop = 10
     ),
     equipment = list(
-      name = "equipment"
+      name = "equipment",
+      initial.pop = 10
     ),
     habitation = list(
-      name = "habitation"
+      name = "habitation",
+      initial.pop = 10
     )
   ),
   resource = list(
     asteroid = list(
       name = "asteroid",
-      initialPopulation = 1000
+      initial.pop = 1000
     ) 
   )
 )

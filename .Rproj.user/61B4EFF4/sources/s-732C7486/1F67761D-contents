@@ -25,9 +25,9 @@ process <- function(.trj, consumes, creates, i, o, att){
              ,mod = "+"
              ,init = 0)
   prod.storage <- paste0(creates, ".storage")
-  assignOnTraj(.trj = .trj
-              , storage = prod.storage
-              , value = o)
+  # addOnTraj(.trj = .trj
+  #             , storage = prod.storage
+  #             , value = o)
   key.cons <- paste0(consumes, ".pop")
   set_global(.trj = .trj
              ,keys = key.cons
@@ -35,9 +35,9 @@ process <- function(.trj, consumes, creates, i, o, att){
              ,mod = "+"
              ,init = 0)
   cons.storage <- paste0(consumes, ".storage")
-  assignOnTraj(.trj = .trj
-              , storage = cons.storage
-              , value = -i)
+  # assignOnTraj(.trj = .trj
+  #             , storage = cons.storage
+  #             , value = -i)
   log_(.trj = .trj
        ,paste0(i, " unit of ", consumes, " turned into ", o, " unit of ", creates)
        ,level = 2 )

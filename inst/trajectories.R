@@ -1,9 +1,11 @@
+library(simmer)
+
 sandGlass <- trajectory(name = "sandGlass") %>% 
-  log_("time flies ...") %>% 
-  #activate("asteroid_dust") %>% 
+  log_("time flies ...") %>%
+  activate("asteroid_dust") %>% 
   timeout(1) %>% 
   send("mine") %>% 
-  rollback(5)
+  rollback(4)
 
 miningTraj <- trajectory(name = "mining") %>%
   seize(resource = paramList$miningModule$name) %>% 

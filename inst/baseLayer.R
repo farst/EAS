@@ -1,8 +1,12 @@
+library(simmer)
+library(plotly)
+library(data.table)
+
 EAS <- simmer()
 reset(EAS)
 EAS %>% 
   add_generator("time", sandGlass, at(0)) %>% 
-  add_generator("asteroid_dust", miningTraj, when_activated(1)) %>% 
+  add_generator("asteroid_dust", miningTraj, when_activated(1)) %>%
   add_resource(paramList$miningModule$name, paramList$miningModule$capacity) %>% 
   add_generator("ore", processingTraj, when_activated(1)) %>% 
   add_resource(paramList$processingModule$name, paramList$processingModule$capacity) %>% 
@@ -17,6 +21,6 @@ EAS %>% run(100)
 #willem %>% get_mon_attributes()
 DT <- as.data.table(EAS %>% get_mon_attributes())
 DT
-#dcast(DT , time~key, value.var = "value")
+# currently we have multiple entries for one time, something like max(abs) could be useful
+# dcast(DT , time~key, value.var = "value") 
 plot_ly(DT, x=~time, y=~value, split=~key, type="scatter", mode="lines")
-

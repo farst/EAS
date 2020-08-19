@@ -17,6 +17,10 @@
 #'  
 #' @export
 
+# TODO init is doesn't access anything other than numeric, 
+# it doesn't evaluate an experssion in other words. Look for uptions and connect it to
+# paramList[["entity"]][[consumes]][["initial.pop"]]
+
 process <- function(.trj, consumes, creates, i, o, att){
   key.prod <- paste0(creates, ".pop")
   set_global(.trj = .trj
@@ -24,17 +28,15 @@ process <- function(.trj, consumes, creates, i, o, att){
              ,values = o
              ,mod = "+"
              ,init = 0)
-  prod.storage <- paste0(creates, ".storage")
-  # addOnTraj(.trj = .trj
-  #             , storage = prod.storage
-  #             , value = o)
+  # addEntityOnTraj(.trj = .trj, entity = consumes, value = -i, env = .GlobalEnv)
   key.cons <- paste0(consumes, ".pop")
+  init.cons <- 0
   set_global(.trj = .trj
              ,keys = key.cons
              ,values = - i
              ,mod = "+"
-             ,init = 0)
-  cons.storage <- paste0(consumes, ".storage")
+             ,init = init.cons)
+  # addEntityOnTraj(.trj = .trj, entity = creates, value = o, env = .GlobalEnv)
   # assignOnTraj(.trj = .trj
   #             , storage = cons.storage
   #             , value = -i)
@@ -102,12 +104,23 @@ checkAvailability <- function(items, book){
 }
 
 # add to storage stock
-addOnTraj <- function(.trj, masterBook = paramList, entity, value, env = .GlobalEnv){
-  if (exists(masterBook[[entity]], env)) {
-    masterBook[[entity]] <- masterBook[[entity]] + value
+# TODO I leave this design behind because the exist evaluation needs more work
+# addEntityOnTraj <- function(.trj, masterBook = paramList, entity, value, env = .GlobalEnv){
+#   if (exists("masterBook[['entity']][[entity]][['live.pop']]", env)) {
+#     masterBook[[entity]] <- masterBook[["entity"]][[entity]][["live.pop"]] + value
+#   } else {message(
+#     paste0("entity ", entity, " doesn't exist in the ", char(masterBook))
+#   )
+#     }
+#   return(.trj)
+# }
+addEntityOnTraj <- function(.trj, entity, value, env = .GlobalEnv){
+  if (exists(as.character(entity), env)) {
+    assign(x = entity, value = get(entity, envir = env) + value, envir = env)
+    message(paste0(entity, " altered to ", value))
   } else {message(
-    paste0("entity ", entity, " doesn't exist in the ", char(masterBook))
+    paste0("entity ", entity, " doesn't exist")
   )
-    }
+  }
   return(.trj)
 }

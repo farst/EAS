@@ -10,6 +10,7 @@ EAS %>%
   add_resource(paramList$miningModule$name, paramList$miningModule$capacity) %>% 
   add_generator("ore", processingTraj, when_activated(1)) %>% 
   add_resource(paramList$processingModule$name, paramList$processingModule$capacity) %>% 
+  #get_attribute(keys = "ore.pop") %>% 
   add_generator("refined_material_pri", printingTraj, when_activated(1)) %>% 
   add_resource(paramList$printerRobot$name, paramList$printerRobot$capacity) %>% 
   add_generator("refined_material_equi", manufacturingTraj, when_activated(1)) %>% 
@@ -17,7 +18,7 @@ EAS %>%
   add_generator("assembly_order", assemblingTraj, when_activated(1)) %>% 
   add_resource(paramList$assemblyRobot$name, paramList$assemblyRobot$capacity)
 
-EAS %>% run(100)
+EAS %>% run(20000)
 #willem %>% get_mon_attributes()
 DT <- as.data.table(EAS %>% get_mon_attributes())
 DT

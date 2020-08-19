@@ -2,7 +2,7 @@
 paramList <- list(
   miningModule = list(
     name = "miningModule",
-    processTime = 10,
+    processTime = 20,
     capacity = 1
   ),
   oreStorage = list(
@@ -11,7 +11,7 @@ paramList <- list(
   ),
   processingModule = list(
     name = "processingModule",
-    processingTime = 10,
+    processingTime = 35,
     capacity = 1
   ),
   refinedStorage = list(
@@ -20,7 +20,7 @@ paramList <- list(
   ),
   recyclingModule = list(
     name = "recyclingModule",
-    processingTime = 10,
+    processingTime = 40,
     capacity = 1
   ),
   printerRobot = list(
@@ -30,7 +30,7 @@ paramList <- list(
   ),
   manufacturingModule = list(
     name = "manufacturingModule",
-    processingTime = 10,
+    processingTime = 20,
     capacity = 1
   ),
   equipmentStorage = list(
@@ -39,7 +39,7 @@ paramList <- list(
   ),
   assemblyRobot = list(
     name = "assemblyRobot",
-    processingTime = 10,
+    processingTime = 20,
     capacity = 1
   ),
   habitationModule = list(
@@ -55,29 +55,42 @@ paramList <- list(
   entity = list(
     ore = list(
       name = "ore",
-      initial.pop = 10
+      initial.pop = 10,
+      live.pop = 0
     ),
     refinedMaterial = list(
       name = "refinedMaterial",
-      initial.pop = 10
+      initial.pop = 10,
+      live.pop = 0
     ),
     shell = list(
       name = "shell",
-      initial.pop = 10
+      initial.pop = 10,
+      live.pop = 0
     ),
     equipment = list(
       name = "equipment",
-      initial.pop = 10
+      initial.pop = 10,
+      live.pop = 0
     ),
     habitation = list(
       name = "habitation",
-      initial.pop = 10
+      initial.pop = 10,
+      live.pop = 0
     )
   ),
   resource = list(
     asteroid = list(
       name = "asteroid",
-      initial.pop = 1000
+      initial.pop = 100,
+      live.pop = 0
     ) 
   )
 )
+
+# this will initialize all the live entity counters in the Global
+for (i in 1:length(paramList$entity)) {
+  assign(paramList$entity[[i]]$name, 0)
+}
+
+asteroid <- 1000

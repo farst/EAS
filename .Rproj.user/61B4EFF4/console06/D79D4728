@@ -257,3 +257,162 @@ Changes not staged for commit:
 
 no changes added to commit (use "git add" and/or "git commit -a")
 ]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ git add .
+]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ git commit -m "minor backtraci[K[K[K[K[K[K[K[K[Ktracing"
+[master d8404a4] minor tracing
+ 18 files changed, 170 insertions(+), 44 deletions(-)
+ rewrite .Rproj.user/61B4EFF4/console06/INDEX001 (71%)
+]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ git co[K[Kadd [K[K[K[Kpush
+Enumerating objects: 55, done.
+Counting objects:   1% (1/55)Counting objects:   3% (2/55)Counting objects:   5% (3/55)Counting objects:   7% (4/55)Counting objects:   9% (5/55)Counting objects:  10% (6/55)Counting objects:  12% (7/55)Counting objects:  14% (8/55)Counting objects:  16% (9/55)Counting objects:  18% (10/55)Counting objects:  20% (11/55)Counting objects:  21% (12/55)Counting objects:  23% (13/55)Counting objects:  25% (14/55)Counting objects:  27% (15/55)Counting objects:  29% (16/55)Counting objects:  30% (17/55)Counting objects:  32% (18/55)Counting objects:  34% (19/55)Counting objects:  36% (20/55)Counting objects:  38% (21/55)Counting objects:  40% (22/55)Counting objects:  41% (23/55)Counting objects:  43% (24/55)Counting objects:  45% (25/55)Counting objects:  47% (26/55)Counting objects:  49% (27/55)Counting objects:  50% (28/55)Counting objects:  52% (29/55)Counting objects:  54% (30/55)Counting objects:  56% (31/55)Counting objects:  58% (32/55)Counting objects:  60% (33/55)Counting objects:  61% (34/55)Counting objects:  63% (35/55)Counting objects:  65% (36/55)Counting objects:  67% (37/55)Counting objects:  69% (38/55)Counting objects:  70% (39/55)Counting objects:  72% (40/55)Counting objects:  74% (41/55)Counting objects:  76% (42/55)Counting objects:  78% (43/55)Counting objects:  80% (44/55)Counting objects:  81% (45/55)Counting objects:  83% (46/55)Counting objects:  85% (47/55)Counting objects:  87% (48/55)Counting objects:  89% (49/55)Counting objects:  90% (50/55)Counting objects:  92% (51/55)Counting objects:  94% (52/55)Counting objects:  96% (53/55)Counting objects:  98% (54/55)Counting objects: 100% (55/55)Counting objects: 100% (55/55), done.
+Delta compression using up to 4 threads
+Compressing objects:   3% (1/27)Compressing objects:   7% (2/27)Compressing objects:  11% (3/27)Compressing objects:  14% (4/27)Compressing objects:  18% (5/27)Compressing objects:  22% (6/27)Compressing objects:  25% (7/27)Compressing objects:  29% (8/27)Compressing objects:  33% (9/27)Compressing objects:  37% (10/27)Compressing objects:  40% (11/27)Compressing objects:  44% (12/27)Compressing objects:  48% (13/27)Compressing objects:  51% (14/27)Compressing objects:  55% (15/27)Compressing objects:  59% (16/27)Compressing objects:  62% (17/27)Compressing objects:  66% (18/27)Compressing objects:  70% (19/27)Compressing objects:  74% (20/27)Compressing objects:  77% (21/27)Compressing objects:  81% (22/27)Compressing objects:  85% (23/27)Compressing objects:  88% (24/27)Compressing objects:  92% (25/27)Compressing objects:  96% (26/27)Compressing objects: 100% (27/27)Compressing objects: 100% (27/27), done.
+Writing objects:   3% (1/28)Writing objects:   7% (2/28)Writing objects:  10% (3/28)Writing objects:  14% (4/28)Writing objects:  17% (5/28)Writing objects:  21% (6/28)Writing objects:  25% (7/28)Writing objects:  28% (8/28)Writing objects:  32% (9/28)Writing objects:  35% (10/28)Writing objects:  39% (11/28)Writing objects:  42% (12/28)Writing objects:  46% (13/28)Writing objects:  50% (14/28)Writing objects:  53% (15/28)Writing objects:  57% (16/28)Writing objects:  60% (17/28)Writing objects:  64% (18/28)Writing objects:  67% (19/28)Writing objects:  71% (20/28)Writing objects:  75% (21/28)Writing objects:  78% (22/28)Writing objects:  82% (23/28)Writing objects:  85% (24/28)Writing objects:  89% (25/28)Writing objects:  92% (26/28)Writing objects:  96% (27/28)Writing objects: 100% (28/28)Writing objects: 100% (28/28), 7.30 KiB | 219.00 KiB/s, done.
+Total 28 (delta 15), reused 0 (delta 0)
+remote: Resolving deltas:   0% (0/15)[Kremote: Resolving deltas:   6% (1/15)[Kremote: Resolving deltas:  13% (2/15)[Kremote: Resolving deltas:  20% (3/15)[Kremote: Resolving deltas:  26% (4/15)[Kremote: Resolving deltas:  33% (5/15)[Kremote: Resolving deltas:  40% (6/15)[Kremote: Resolving deltas:  46% (7/15)[Kremote: Resolving deltas:  53% (8/15)[Kremote: Resolving deltas:  60% (9/15)[Kremote: Resolving deltas:  66% (10/15)[Kremote: Resolving deltas:  73% (11/15)[Kremote: Resolving deltas:  80% (12/15)[Kremote: Resolving deltas:  86% (13/15)[Kremote: Resolving deltas:  93% (14/15)[Kremote: Resolving deltas: 100% (15/15)[Kremote: Resolving deltas: 100% (15/15), completed with 15 local objects.[K
+To https://github.com/farst/EAS.git
+   96c6748..d8404a4  master -> master
+]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ [KMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ cd [K[K[Kpwd\[K\[K
+/Users/farshadgoldoust/My computer/Projects/R-DSTART
+]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ s[Kcd ..
+]0;~/My computer/ProjectsMacBook-Air-van-Farshad:Projects farshadgoldoust$ git clone https://gitlab.tudelft.nl/acjvermeulen/evolving- asteroid-starships.git
+Cloning into 'evolving-asteroid-starships'...
+error: cannot run rpostback-askpass: No such file or directory
+Username for 'https://gitlab.tudelft.nl': farst   rst
+error: cannot run rpostback-askpass: No such file or directory
+Password for 'https://farst@gitlab.tudelft.nl': 
+remote: HTTP Basic: Access denied
+fatal: Authentication failed for 'https://gitlab.tudelft.nl/acjvermeulen/evolving-asteroid-starships.git/'
+]0;~/My computer/ProjectsMacBook-Air-van-Farshad:Projects farshadgoldoust$ cd "[K./
+.DS_Store              DSTART/                MBDM - EPA1361/        R-DSTART/
+1000 days/             Docker/                MEPA - EPA1223/        Word Network/
+AdvR/                  IO Model - MacroEcon/  Policy Control Theory/ 
+MacBook-Air-van-Farshad:Projects farshadgoldoust$ cd ./
+.DS_Store              DSTART/                MBDM - EPA1361/        R-DSTART/
+1000 days/             Docker/                MEPA - EPA1223/        Word Network/
+AdvR/                  IO Model - MacroEcon/  Policy Control Theory/ 
+MacBook-Air-van-Farshad:Projects farshadgoldoust$ cd ./R_Ds[KSTA[K[K[K[K[K-DSTART/
+]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	[31mmodified:   .Rproj.user/61B4EFF4/console06/D79D4728[m
+	[31mmodified:   .Rproj.user/61B4EFF4/console06/D79D4728.env[m
+	[31mmodified:   .Rproj.user/61B4EFF4/console06/INDEX001[m
+	[31mmodified:   .Rproj.user/61B4EFF4/sources/prop/49625A7F[m
+	[31mmodified:   .Rproj.user/61B4EFF4/sources/s-732C7486/1F67761D[m
+	[31mmodified:   .Rproj.user/61B4EFF4/sources/s-732C7486/1F67761D-contents[m
+	[31mmodified:   R/fun_modules.R[m
+	[31mmodified:   R/paramList.R[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ [KMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ ls
+R			inst			simmer-02-jss.pdf
+R-DSTART.Rproj		mockData.csv
+]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	[31mmodified:   .Rproj.user/61B4EFF4/console06/D79D4728[m
+	[31mmodified:   .Rproj.user/61B4EFF4/console06/D79D4728.env[m
+	[31mmodified:   .Rproj.user/61B4EFF4/console06/INDEX001[m
+	[31mmodified:   .Rproj.user/61B4EFF4/sources/prop/49625A7F[m
+	[31mmodified:   .Rproj.user/61B4EFF4/sources/s-732C7486/1F67761D[m
+	[31mmodified:   .Rproj.user/61B4EFF4/sources/s-732C7486/1F67761D-contents[m
+	[31mmodified:   R/fun_modules.R[m
+	[31mmodified:   R/paramList.R[m
+
+no changes added to commit (use "git add" and/or "git commit -a")
+]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ git add .
+]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	[32mmodified:   .Rproj.user/61B4EFF4/console06/D79D4728[m
+	[32mmodified:   .Rproj.user/61B4EFF4/console06/D79D4728.env[m
+	[32mmodified:   .Rproj.user/61B4EFF4/console06/INDEX001[m
+	[32mmodified:   .Rproj.user/61B4EFF4/sources/prop/49625A7F[m
+	[32mmodified:   .Rproj.user/61B4EFF4/sources/s-732C7486/1F67761D[m
+	[32mmodified:   .Rproj.user/61B4EFF4/sources/s-732C7486/1F67761D-contents[m
+	[32mmodified:   R/fun_modules.R[m
+	[32mmodified:   R/paramList.R[m
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	[31mmodified:   .Rproj.user/61B4EFF4/console06/D79D4728[m
+
+]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ [KMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ [KMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ [KMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ gti status[K[K[K[K[K[K[K[K[Kit status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	[32mmodified:   .Rproj.user/61B4EFF4/console06/D79D4728[m
+	[32mmodified:   .Rproj.user/61B4EFF4/console06/D79D4728.env[m
+	[32mmodified:   .Rproj.user/61B4EFF4/console06/INDEX001[m
+	[32mmodified:   .Rproj.user/61B4EFF4/sources/prop/49625A7F[m
+	[32mmodified:   .Rproj.user/61B4EFF4/sources/s-732C7486/1F67761D[m
+	[32mmodified:   .Rproj.user/61B4EFF4/sources/s-732C7486/1F67761D-contents[m
+	[32mmodified:   R/fun_modules.R[m
+	[32mmodified:   R/paramList.R[m
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	[31mmodified:   .Rproj.user/61B4EFF4/console06/D79D4728[m
+	[31mmodified:   .Rproj.user/61B4EFF4/console06/INDEX001[m
+	[31mmodified:   .Rproj.user/61B4EFF4/sources/prop/49625A7F[m
+	[31mmodified:   .Rproj.user/61B4EFF4/sources/prop/D0E6C4B2[m
+	[31mmodified:   .Rproj.user/61B4EFF4/sources/prop/INDEX[m
+	[31mmodified:   .Rproj.user/61B4EFF4/sources/s-732C7486/1F67761D[m
+	[31mmodified:   .Rproj.user/61B4EFF4/sources/s-732C7486/1F67761D-contents[m
+	[31mmodified:   .Rproj.user/shared/notebooks/paths[m
+	[31mmodified:   R/fun_modules.R[m
+	[31mmodified:   R/paramList.R[m
+	[31mmodified:   inst/baseLayer.R[m
+	[31mmodified:   inst/trajectories.R[m
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+	[31minst/testScript.R[m
+
+]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ git add .
+]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ git status
+On branch master
+Your branch is up to date with 'origin/master'.
+
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+	[32mmodified:   .Rproj.user/61B4EFF4/console06/D79D4728[m
+	[32mmodified:   .Rproj.user/61B4EFF4/console06/D79D4728.env[m
+	[32mmodified:   .Rproj.user/61B4EFF4/console06/INDEX001[m
+	[32mmodified:   .Rproj.user/61B4EFF4/sources/prop/49625A7F[m
+	[32mmodified:   .Rproj.user/61B4EFF4/sources/prop/D0E6C4B2[m
+	[32mmodified:   .Rproj.user/61B4EFF4/sources/prop/INDEX[m
+	[32mmodified:   .Rproj.user/61B4EFF4/sources/s-732C7486/1F67761D[m
+	[32mmodified:   .Rproj.user/61B4EFF4/sources/s-732C7486/1F67761D-contents[m
+	[32mmodified:   .Rproj.user/shared/notebooks/paths[m
+	[32mmodified:   R/fun_modules.R[m
+	[32mmodified:   R/paramList.R[m
+	[32mmodified:   inst/baseLayer.R[m
+	[32mnew file:   inst/testScript.R[m
+	[32mmodified:   inst/trajectories.R[m
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+	[31mmodified:   .Rproj.user/61B4EFF4/console06/D79D4728[m
+
+]0;~/My computer/Projects/R-DSTARTMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ git 
+The default interactive shell is now zsh.
+To update your account to use zsh, please run `chsh -s /bin/zsh`.
+For more details, please visit https://support.apple.com/kb/HT208050.
+[KMacBook-Air-van-Farshad:R-DSTART farshadgoldoust$ git add [K .

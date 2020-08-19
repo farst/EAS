@@ -1,20 +1,29 @@
 library(simmer)
 
 sandGlass <- trajectory(name = "sandGlass") %>% 
+  set_global(keys = paste0(paramList$resource$asteroid$name, ".pop"), 
+             value = paramList$resource$asteroid$initial.pop) %>% 
   log_("time flies ...") %>%
   activate("asteroid_dust") %>% 
   timeout(1) %>% 
   send("mine") %>% 
   rollback(4)
-
+  
 miningTraj <- trajectory(name = "mining") %>%
-  seize(resource = paramList$miningModule$name) %>% 
-  timeout(paramList$miningModule$processTime) %>% 
-  process(consumes = paramList$resource$asteroid$name, 
-          creates = paramList$entity$ore$name, 
-          i = 1, o = 1, att = "ore") %>%
-  release(resource = paramList$miningModule$name) %>% 
-  activate("ore")
+  seize(resource = paramList$miningModule$name) %>%
+  branch(option = function() ifelse(get_global(EAS, paste0(paramList$resource$asteroid$name, ".pop")) > 0, 1,2),
+         continue = c(FALSE,FALSE),
+         trajectory() %>%  
+           timeout(paramList$miningModule$processTime) %>% 
+           process(consumes = paramList$resource$asteroid$name, 
+                   creates = paramList$entity$ore$name, 
+                   i = 1, o = 1, att = "ore") %>%
+           release(resource = paramList$miningModule$name) %>% 
+           activate("ore"),
+         trajectory() %>% 
+           log_("asteroid resources are fully depleted") %>% 
+           release(resource = paramList$miningModule$name)
+  )
 
 processingTraj <- trajectory(name = "processing") %>% 
   seize(resource = paramList$processingModule$name) %>% 
@@ -31,7 +40,7 @@ printingTraj <- trajectory(name = "printing") %>%
   timeout(paramList$printerRobot$processingTime) %>% 
   process(consumes = paramList$entity$refinedMaterial$name,
           creates = paramList$entity$shell$name,
-          i = 1, o = 1, att = "shell") %>%
+          i = 0.57, o = 1, att = "shell") %>%
   release(paramList$printerRobot$name)
 
 manufacturingTraj <- trajectory(name = "manufacturing") %>% 
@@ -39,7 +48,7 @@ manufacturingTraj <- trajectory(name = "manufacturing") %>%
   timeout(paramList$manufacturingModule$processingTime) %>% 
   process(consumes = paramList$entity$refinedMaterial$name,
           creates = paramList$entity$equipment$name,
-          i = 1, o = 1, att = "equi") %>% 
+          i = 0.1, o = 1, att = "equi") %>% 
   release(paramList$manufacturingModule$name) %>% 
   activate("assembly_order")
   
@@ -60,3 +69,4 @@ assemblingTraj <- trajectory(name = "assembling") %>%
   process(consumes = paramList$entity$shell$name, creates = paramList$entity$habitation$name, i = 1, o = 0, att = "shelR") %>%
   process(consumes = paramList$entity$equipment$name, creates = paramList$entity$habitation$name, i = 1, o = 1, att = "hab") %>% 
   release(paramList$assemblyRobot$name)
+

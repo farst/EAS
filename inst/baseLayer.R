@@ -18,7 +18,7 @@ EAS %>%
   add_generator("assembly_order", assemblingTraj, when_activated(1)) %>% 
   add_resource(paramList$assemblyRobot$name, paramList$assemblyRobot$capacity)
 
-EAS %>% run(20000)
+EAS %>% run(10000)
 #willem %>% get_mon_attributes()
 DT <- as.data.table(EAS %>% get_mon_attributes())
 DT

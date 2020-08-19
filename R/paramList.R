@@ -7,7 +7,7 @@ paramList <- list(
   ),
   oreStorage = list(
     name = "oreStorage",
-    capacity = 10
+    initialCapacity = 10
   ),
   processingModule = list(
     name = "processingModule",
@@ -16,7 +16,7 @@ paramList <- list(
   ),
   refinedStorage = list(
     name = "refinedStorage",
-    capacity = 10
+    initialCapacity = 10
   ),
   recyclingModule = list(
     name = "recyclingModule",
@@ -28,6 +28,10 @@ paramList <- list(
     processingTime = 10,
     capacity = 1
   ),
+  shellStorage = list(
+    name = "shellStorage",
+    initialCapacity = 10
+  ),
   manufacturingModule = list(
     name = "manufacturingModule",
     processingTime = 20,
@@ -35,7 +39,7 @@ paramList <- list(
   ),
   equipmentStorage = list(
     name = "equipmentStorage",
-    capacity = 10
+    initialCapacity = 10
   ),
   assemblyRobot = list(
     name = "assemblyRobot",
@@ -55,27 +59,27 @@ paramList <- list(
   entity = list(
     ore = list(
       name = "ore",
-      initial.pop = 10,
+      initial.pop = 5,
       live.pop = 0
     ),
     refinedMaterial = list(
       name = "refinedMaterial",
-      initial.pop = 10,
+      initial.pop = 5,
       live.pop = 0
     ),
     shell = list(
       name = "shell",
-      initial.pop = 10,
+      initial.pop = 5,
       live.pop = 0
     ),
     equipment = list(
       name = "equipment",
-      initial.pop = 10,
+      initial.pop = 5,
       live.pop = 0
     ),
     habitation = list(
       name = "habitation",
-      initial.pop = 10,
+      initial.pop = 5,
       live.pop = 0
     )
   ),

@@ -1,50 +1,61 @@
 # this is a parameter list for keeping record of parameters and easy manipulation
+# srr = self replication request
 paramList <- list(
   miningModule = list(
     name = "miningModule",
     processTime = 20,
-    capacity = 1
+    capacity = 1,
+    srr = 0
   ),
   oreStorage = list(
     name = "oreStorage",
-    initialCapacity = 10
+    initialCapacity = 10,
+    srr = 0
   ),
   processingModule = list(
     name = "processingModule",
     processingTime = 35,
-    capacity = 1
+    capacity = 1,
+    srr = 0
   ),
   refinedStorage = list(
     name = "refinedStorage",
-    initialCapacity = 10
+    initialCapacity = 10,
+    srr = 0
   ),
   recyclingModule = list(
     name = "recyclingModule",
     processingTime = 40,
-    capacity = 1
+    capacity = 1,
+    srr = 0
   ),
   printerRobot = list(
     name = "printerRobot",
     processingTime = 10,
-    capacity = 1
+    capacity = 1,
+    srr = 0
   ),
   shellStorage = list(
     name = "shellStorage",
-    initialCapacity = 10
+    initialCapacity = 10,
+    srr = 0
   ),
   manufacturingModule = list(
     name = "manufacturingModule",
     processingTime = 20,
-    capacity = 1
+    capacity = 1,
+    srr = 0
   ),
   equipmentStorage = list(
     name = "equipmentStorage",
-    initialCapacity = 10
+    initialCapacity = 10,
+    srr = 0
   ),
   assemblyRobot = list(
     name = "assemblyRobot",
     processingTime = 20,
-    capacity = 1
+    capacity = 1,
+    srr = 0
   ),
   habitationModule = list(
     name = "habitationModule",
@@ -81,6 +92,11 @@ paramList <- list(
       name = "habitation",
       initial.pop = 5,
       live.pop = 0
+    ),
+    blankModule = list(
+      name = "blankModule",
+      initial.pop = 0,
+      live.pop = 0
     )
   ),
   resource = list(
@@ -89,6 +105,16 @@ paramList <- list(
       initial.pop = 100,
       live.pop = 0
     ) 
+  ),
+  population = list(
+    human = list(
+      name = "human",
+      initial.pop = 10,
+      modelParam = list(
+        max.occupancy = 6,
+        delta = 1.1
+      )
+    )
   )
 )
 

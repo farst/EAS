@@ -19,12 +19,49 @@ sandGlass <- trajectory(name = "sandGlass") %>%
              value = paramList$entity$shell$initial.pop) %>%
   set_global(paste0(paramList$entity$equipment$name, ".pop"),
              value = paramList$entity$equipment$initial.pop) %>%
+  set_global(paste0(paramList$miningModule$name, ".srr"),
+             value = paramList$miningModule$srr) %>% 
+  set_global(paste0(paramList$oreStorage$name, ".srr"),
+             value = paramList$oreStorage$srr) %>% 
+  set_global(paste0(paramList$processingModule$name, ".srr"),
+             value = paramList$processingModule$srr) %>% 
+  set_global(paste0(paramList$refinedStorage$name, ".srr"),
+             value = paramList$refinedStorage$srr) %>% 
+  set_global(paste0(paramList$printerRobot$name, ".srr"),
+             value = paramList$printerRobot$srr) %>% 
+  set_global(paste0(paramList$shellStorage$name, ".srr"),
+             value = paramList$shellStorage$srr) %>% 
+  set_global(paste0(paramList$manufacturingModule$name, ".srr"),
+             value = paramList$manufacturingModule$srr) %>% 
+  set_global(paste0(paramList$equipmentStorage$name, ".srr"),
+             value = paramList$equipmentStorage$srr) %>% 
+  set_global(paste0(paramList$assemblyRobot$name, ".srr"),
+             value = paramList$assemblyRobot$srr) %>% 
+  set_global(paste0(paramList$entity$habitation$name, ".pop"),
+             value = paramList$entity$habitation$initial.pop) %>%
+  set_global(paste0(paramList$population$human$name, ".pop"),
+             value = paramList$population$human$initial.pop) %>%
   log_("time flies ...") %>%
   activate("asteroid_dust") %>% 
   timeout(1) %>% 
   send("mine") %>% 
   rollback(4)
-  
+
+population <- trajectory(name = "population") %>% 
+  set_global(keys = paste0(paramList$population$human$name, ".pop"),
+             value = function() get_global(EAS, keys = paste0(paramList$population$human$name, ".pop")) 
+                                            + (paramList$population$human$modelParam$delta * 
+                                                 (1 - ( get_global(EAS, keys = paste0(paramList$population$human$name, ".pop"))/
+                                                                   (paramList$population$human$modelParam$max.occupancy * 
+                                                                     get_global(EAS, paste0(paramList$entity$habitation$name, ".pop"))
+                                                                    )
+                                                       )
+                                                  )
+                                               ) * get_global(EAS, keys = paste0(paramList$population$human$name, ".pop"))
+             ) %>% 
+  timeout(2) %>% 
+  rollback(2)
+
 miningTraj <- trajectory(name = "mining") %>%
   seize(resource = paramList$miningModule$name) %>%
   # check if the asteroid has any resources to mine:
@@ -100,7 +137,7 @@ printingTraj <- trajectory(name = "printing") %>%
                                    timeout(paramList$printerRobot$processingTime) %>% 
                                    process(consumes = paramList$entity$refinedMaterial$name,
                                            creates = paramList$entity$shell$name,
-                                           i = 0.57, o = 1, att = "shell") %>%
+                                           i = 0.75, o = 1, att = "shell") %>%
                                    release(paramList$printerRobot$name) %>% 
                                    activate("assembly_order"),
                                  # shell storage is full:
@@ -168,8 +205,11 @@ assemblingTraj <- trajectory(name = "assembling") %>%
                                  trajectory() %>% 
                                    timeout(paramList$assemblyRobot$processingTime) %>% 
                                    process(consumes = paramList$entity$shell$name, creates = paramList$entity$habitation$name, i = 1, o = 0, att = "shelR") %>%
-                                   process(consumes = paramList$entity$equipment$name, creates = paramList$entity$habitation$name, i = 1, o = 1, att = "hab") %>% 
-                                   release(paramList$assemblyRobot$name),
+                                   process(consumes = paramList$entity$equipment$name, creates = paramList$entity$blankModule$name, i = 1, o = 1, att = "hab") %>% 
+                                   release(paramList$assemblyRobot$name)%>% 
+                                   process(consumes = paramList$entity$blankModule$name,
+                                           creates = paramList$entity$habitation$name,
+                                           i = 1, o = 1, att = "hab"),
                                  # equipment storage is full:
                                  trajectory() %>% 
                                    log_("equipment storages are fully depleted") %>% 
@@ -178,5 +218,5 @@ assemblingTraj <- trajectory(name = "assembling") %>%
          # shell storage is empty:
          trajectory() %>% 
            log_("shell storages are fully depleted") %>% 
-           release(resource = paramList$assemblyRobot$name))
-  )
+           release(resource = paramList$assemblyRobot$name)
+         )

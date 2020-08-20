@@ -6,6 +6,7 @@ EAS <- simmer()
 reset(EAS)
 EAS %>% 
   add_generator("time", sandGlass, at(0)) %>% 
+  add_generator("population", population, at(0)) %>% 
   add_generator("asteroid_dust", miningTraj, when_activated(1)) %>%
   add_resource(paramList$miningModule$name, paramList$miningModule$capacity) %>% 
   add_generator("ore", processingTraj, when_activated(1)) %>% 
@@ -25,3 +26,4 @@ DT
 # currently we have multiple entries for one time, something like max(abs) could be useful
 # dcast(DT , time~key, value.var = "value") 
 plot_ly(DT, x=~time, y=~value, split=~key, type="scatter", mode="lines")
+

@@ -3,7 +3,11 @@
 paramList <- list(
   miningModule = list(
     name = "miningModule",
-    processTime = 20,
+    processTime = list(
+      min = 21,
+      mode = 28,
+      max  = 35
+    ),
     capacity = 1,
     srr = 0
   ),
@@ -14,7 +18,11 @@ paramList <- list(
   ),
   processingModule = list(
     name = "processingModule",
-    processingTime = 35,
+    processingTime = list(
+      min = 42,
+      mode = 56,
+      max  = 70
+    ),
     capacity = 1,
     srr = 0
   ),
@@ -25,13 +33,21 @@ paramList <- list(
   ),
   recyclingModule = list(
     name = "recyclingModule",
-    processingTime = 40,
+    processingTime = list(
+      min = 35,
+      mode = 42,
+      max  = 49
+    ),
     capacity = 1,
     srr = 0
   ),
   printerRobot = list(
     name = "printerRobot",
-    processingTime = 10,
+    processingTime = list(
+      min = 21,
+      mode = 28,
+      max  = 35
+    ),
     capacity = 1,
     srr = 0
   ),
@@ -42,7 +58,11 @@ paramList <- list(
   ),
   manufacturingModule = list(
     name = "manufacturingModule",
-    processingTime = 20,
+    processingTime = list(
+      min = 35,
+      mode = 42,
+      max  = 49
+    ),
     capacity = 1,
     srr = 0
   ),
@@ -53,7 +73,11 @@ paramList <- list(
   ),
   assemblyRobot = list(
     name = "assemblyRobot",
-    processingTime = 20,
+    processingTime = list(
+      min = 10,
+      mode = 14,
+      max  = 20
+    ),
     capacity = 1,
     srr = 0
   ),
@@ -93,6 +117,11 @@ paramList <- list(
       initial.pop = 5,
       live.pop = 0
     ),
+    lifeSupport = list(
+      name = "lifeSupport",
+      initial.pop = 5,
+      live.pop = 0
+    ),
     blankModule = list(
       name = "blankModule",
       initial.pop = 0,
@@ -112,15 +141,8 @@ paramList <- list(
       initial.pop = 10,
       modelParam = list(
         max.occupancy = 6,
-        delta = 1.1
+        delta = 0.011
       )
     )
   )
 )
-
-# this will initialize all the live entity counters in the Global
-for (i in 1:length(paramList$entity)) {
-  assign(paramList$entity[[i]]$name, 0)
-}
-
-asteroid <- 1000

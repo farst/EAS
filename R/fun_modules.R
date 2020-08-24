@@ -124,3 +124,11 @@ addEntityOnTraj <- function(.trj, entity, value, env = .GlobalEnv){
   }
   return(.trj)
 }
+
+# findSrPriority
+findSrPriority <- function(.env = EAS, modules){
+  srr <- get_global(.env = .env, keys = modules)
+  df <- data.frame("srrTraj" = 1:length(modules), "modName" = modules, "srr" = srr)
+  df <- df[order(-srr),]
+  return(df$srrTraj[1])
+}

@@ -69,17 +69,21 @@ sandGlass <- trajectory(name = "sandGlass") %>%
           ) %>% 
   # actively update resource capacity
   set_capacity(resource = paramList$miningModule$name,
-               value = function() get_global(EAS, paste0(paramList$miningModule$name, ".pop"))) %>%
+               value = function() min(get_global(EAS, paste0(paramList$miningModule$name, ".pop")),
+               get_global(EAS, paste0(paramList$resource$asteroid$name, ".pop")))) %>%
   set_capacity(resource = paramList$processingModule$name,
-               value = function() get_global(EAS, paste0(paramList$processingModule$name, ".pop"))) %>%
-  # set_capacity(resource = paramList$recyclingModule$name,
-  #              value = function() get_global(EAS, paste0(paramList$recyclingModule$name, ".pop"))) %>%
+               value = function() min(get_global(EAS, paste0(paramList$processingModule$name, ".pop")),
+                                      get_global(EAS, paste0(paramList$entity$ore$name, ".pop")))) %>%
   set_capacity(resource = paramList$printerRobot$name,
-               value = function() get_global(EAS, paste0(paramList$printerRobot$name, ".pop"))) %>%
+               value = function() min(get_global(EAS, paste0(paramList$printerRobot$name, ".pop")),
+                                      get_global(EAS, paste0(paramList$entity$refinedMaterial$name, ".pop")))) %>%
   set_capacity(resource = paramList$manufacturingModule$name,
-               value = function() get_global(EAS, paste0(paramList$manufacturingModule$name, ".pop"))) %>%
+               value = function() min(get_global(EAS, paste0(paramList$manufacturingModule$name, ".pop")),
+                                      get_global(EAS, paste0(paramList$entity$refinedMaterial$name, ".pop")))) %>%
   set_capacity(resource = paramList$assemblyRobot$name,
-               value = function() get_global(EAS, paste0(paramList$assemblyRobot$name, ".pop"))) %>%
+               value = function() min(get_global(EAS, paste0(paramList$assemblyRobot$name, ".pop")),
+                                      get_global(EAS, paste0(paramList$entity$shell$name, ".pop")),
+                                      get_global(EAS, paste0(paramList$entity$equipment$name, ".pop")))) %>%
   # update occupancy KPI
   set_global(key = "occupancy.kpi",
              value = function() get_global(EAS, keys = paste0(paramList$population$human$name, ".pop"))/
@@ -375,33 +379,70 @@ assemblingTraj <- trajectory(name = "assembling") %>%
                                                                                             creates = paramList$entity$lifeSupport$name,
                                                                                             i = 1, o = 1, att = "lif")
                                                                   ),
-                                          trajectory() %>% branch(option = function() round(runif(1, min = 0.51, max = 9.49)), 
+                                          trajectory() %>% branch(option = function() findSrPriority(EAS,
+                                                                                                     modules = c(paste0(paramList$miningModule$name, ".srr"),
+                                                                                                                 paste0(paramList$processingModule$name, ".srr"),
+                                                                                                                 paste0(paramList$printerRobot$name, ".srr"),
+                                                                                                                 paste0(paramList$manufacturingModule$name, ".srr"),
+                                                                                                                 paste0(paramList$assemblyRobot$name, ".srr"),
+                                                                                                                 paste0(paramList$oreStorage$name, ".srr"),
+                                                                                                                 paste0(paramList$refinedStorage$name, ".srr"),
+                                                                                                                 paste0(paramList$shellStorage$name, ".srr"),
+                                                                                                                 paste0(paramList$equipmentStorage$name, ".srr"))
+                                                                                                     ), 
                                                                   continue = c(FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
-                                                                  trajectory() %>% process(consumes = paramList$entity$blankModule$name,
+                                                                  trajectory() %>% 
+                                                                    set_global(paste0(paramList$miningModule$name, ".srr"),
+                                                                                              value = 0) %>% 
+                                                                    process(consumes = paramList$entity$blankModule$name,
                                                                                            creates = paramList$miningModule$name,
                                                                                            i = 1, o = 1, att = "min"),
-                                                                  trajectory() %>% process(consumes = paramList$entity$blankModule$name,
+                                                                  trajectory() %>% 
+                                                                    set_global(paste0(paramList$processingModule$name, ".srr"),
+                                                                               value = 0) %>% 
+                                                                    process(consumes = paramList$entity$blankModule$name,
                                                                                            creates = paramList$processingModule$name,
                                                                                            i = 1, o = 1, att = "pro"),
-                                                                  trajectory() %>% process(consumes = paramList$entity$blankModule$name,
+                                                                  trajectory() %>% 
+                                                                    set_global(paste0(paramList$printerRobot$name, ".srr"),
+                                                                               value = 0) %>% 
+                                                                    process(consumes = paramList$entity$blankModule$name,
                                                                                            creates = paramList$printerRobot$name,
                                                                                            i = 1, o = 1, att = "pri"),
-                                                                  trajectory() %>% process(consumes = paramList$entity$blankModule$name,
+                                                                  trajectory() %>% 
+                                                                    set_global(paste0(paramList$manufacturingModule$name, ".srr"),
+                                                                               value = 0) %>% 
+                                                                    process(consumes = paramList$entity$blankModule$name,
                                                                                            creates = paramList$manufacturingModule$name,
                                                                                            i = 1, o = 1, att = "man"),
-                                                                  trajectory() %>% process(consumes = paramList$entity$blankModule$name,
+                                                                  trajectory() %>% 
+                                                                    set_global(paste0(paramList$assemblyRobot$name, ".srr"),
+                                                                               value = 0) %>% 
+                                                                    process(consumes = paramList$entity$blankModule$name,
                                                                                            creates = paramList$assemblyRobot$name,
                                                                                            i = 1, o = 1, att = "assR"),
-                                                                  trajectory() %>% process(consumes = paramList$entity$blankModule$name,
+                                                                  trajectory() %>%   
+                                                                    set_global(paste0(paramList$oreStorage$name, ".srr"),
+                                                                                                value = 0) %>% 
+                                                                    process(consumes = paramList$entity$blankModule$name,
                                                                                            creates = paramList$oreStorage$name,
                                                                                            i = 1, o = 1, att = "orS"),
-                                                                  trajectory() %>% process(consumes = paramList$entity$blankModule$name,
+                                                                  trajectory() %>% 
+                                                                    set_global(paste0(paramList$refinedStorage$name, ".srr"),
+                                                                               value = 0) %>% 
+                                                                    process(consumes = paramList$entity$blankModule$name,
                                                                                            creates = paramList$refinedStorage$name,
                                                                                            i = 1, o = 1, att = "rmS"),
-                                                                  trajectory() %>% process(consumes = paramList$entity$blankModule$name,
+                                                                  trajectory() %>% 
+                                                                    set_global(paste0(paramList$shellStorage$name, ".srr"),
+                                                                               value = 0) %>% 
+                                                                    process(consumes = paramList$entity$blankModule$name,
                                                                                            creates = paramList$shellStorage$name,
                                                                                            i = 1, o = 1, att = "shS"),
-                                                                  trajectory() %>% process(consumes = paramList$entity$blankModule$name,
+                                                                  trajectory() %>% 
+                                                                    set_global(paste0(paramList$equipmentStorage$name, ".srr"),
+                                                                               value = 0) %>% 
+                                                                    process(consumes = paramList$entity$blankModule$name,
                                                                                            creates = paramList$equipmentStorage$name,
                                                                                            i = 1, o = 1, att = "eqS")
                                           )

@@ -25,7 +25,7 @@ DT2 <- as.data.table(EAS %>% get_mon_resources())
 fig1 <- plot_ly(DT2, x=~time, y=~queue, split=~resource, type="scatter", mode="lines")# %>% layout("quoue counts")
 # currently we have multiple entries for one time, something like max(abs) could be useful
 # dcast(DT , time~key, value.var = "value") 
-fig2 <- plot_ly(DT[grepl("pop", key)], x=~time, y=~value, split=~key, type="scatter", mode="lines")# %>% layout(title = "entities")
+fig2 <- plot_ly(DT[grepl("pop", key) || grepl("kpi", key)], x=~time, y=~value, split=~key, type="scatter", mode="lines")# %>% layout(title = "entities")
 fig3 <- plot_ly(DT[grepl("srr", key)], x=~time, y=~value, split=~key, type="scatter", mode="lines")# %>% layout(title = "srr")
 #fig4 <- plot_ly(DT[grepl("srr", key)], x=~time, y=~value, split=~key, type="scatter", mode="lines")
 subplot(fig1, fig2, fig3, nrows = 2, shareX = T)

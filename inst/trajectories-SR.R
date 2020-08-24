@@ -48,38 +48,38 @@ sandGlass <- trajectory(name = "sandGlass") %>%
   set_global(paste0(paramList$assemblyRobot$name, ".srr"),
              value = paramList$assemblyRobot$srr) %>% 
   # initialize resource capacity
-  set_global(keys = paste0(paramList$miningModule$name, ".cap"), 
+  set_global(keys = paste0(paramList$miningModule$name, ".pop"), 
              value = paramList$miningModule$capacity) %>% 
-  set_global(keys = paste0(paramList$processingModule$name, ".cap"), 
+  set_global(keys = paste0(paramList$processingModule$name, ".pop"), 
              value = paramList$processingModule$capacity) %>% 
-  set_global(keys = paste0(paramList$recyclingModule$name, ".cap"), 
+  set_global(keys = paste0(paramList$recyclingModule$name, ".pop"), 
              value = paramList$recyclingModule$capacity) %>% 
-  set_global(keys = paste0(paramList$printerRobot$name, ".cap"), 
+  set_global(keys = paste0(paramList$printerRobot$name, ".pop"), 
              value = paramList$printerRobot$capacity) %>% 
-  set_global(keys = paste0(paramList$manufacturingModule$name, ".cap"), 
+  set_global(keys = paste0(paramList$manufacturingModule$name, ".pop"), 
              value = paramList$manufacturingModule$capacity) %>% 
-  set_global(keys = paste0(paramList$assemblyRobot$name, ".cap"), 
+  set_global(keys = paste0(paramList$assemblyRobot$name, ".pop"), 
              value = paramList$assemblyRobot$capacity) %>% 
   log_("time flies ...") %>%
   activate("asteroid_dust") %>% 
   timeout(task = function() 0.5*rtri(1, min = paramList$miningModule$processTime$min,
                                  mode = paramList$miningModule$processTime$mode,
                                  max = paramList$miningModule$processTime$ max)/
-            get_global(EAS, paste0(paramList$miningModule$name, ".cap"))
+            get_global(EAS, paste0(paramList$miningModule$name, ".pop"))
           ) %>% 
   # actively update resource capacity
   set_capacity(resource = paramList$miningModule$name,
-               value = function() get_global(EAS, paste0(paramList$miningModule$name, ".cap"))) %>%
+               value = function() get_global(EAS, paste0(paramList$miningModule$name, ".pop"))) %>%
   set_capacity(resource = paramList$processingModule$name,
-               value = function() get_global(EAS, paste0(paramList$processingModule$name, ".cap"))) %>%
+               value = function() get_global(EAS, paste0(paramList$processingModule$name, ".pop"))) %>%
   # set_capacity(resource = paramList$recyclingModule$name,
-  #              value = function() get_global(EAS, paste0(paramList$recyclingModule$name, ".cap"))) %>%
+  #              value = function() get_global(EAS, paste0(paramList$recyclingModule$name, ".pop"))) %>%
   set_capacity(resource = paramList$printerRobot$name,
-               value = function() get_global(EAS, paste0(paramList$printerRobot$name, ".cap"))) %>%
+               value = function() get_global(EAS, paste0(paramList$printerRobot$name, ".pop"))) %>%
   set_capacity(resource = paramList$manufacturingModule$name,
-               value = function() get_global(EAS, paste0(paramList$manufacturingModule$name, ".cap"))) %>%
+               value = function() get_global(EAS, paste0(paramList$manufacturingModule$name, ".pop"))) %>%
   set_capacity(resource = paramList$assemblyRobot$name,
-               value = function() get_global(EAS, paste0(paramList$assemblyRobot$name, ".cap"))) %>%
+               value = function() get_global(EAS, paste0(paramList$assemblyRobot$name, ".pop"))) %>%
   # update occupancy KPI
   set_global(key = "occupancy.kpi",
              value = function() get_global(EAS, keys = paste0(paramList$population$human$name, ".pop"))/
@@ -173,7 +173,7 @@ processingTraj <- trajectory(name = "processing") %>%
                     # input buffer SR component:
                     set_global(keys = paste0(paramList$processingModule$name, ".srr"),
                                value = function() ifelse(get_queue_count(EAS, paramList$processingModule$name)/
-                                                           get_global(EAS, paste0(paramList$processingModule$name, ".cap")) > 1, 1, 0),
+                                                           get_global(EAS, paste0(paramList$processingModule$name, ".pop")) > 1, 1, 0),
                                mod = "+"
                                  ) %>% 
                                    timeout(function() rtri(1, 
@@ -235,7 +235,7 @@ printingTraj <- trajectory(name = "printing") %>%
                     # input buffer SR component:
                     set_global(keys = paste0(paramList$printerRobot$name, ".srr"),
                                value = function() ifelse(get_queue_count(EAS, paramList$printerRobot$name)/
-                                                           get_global(EAS, paste0(paramList$printerRobot$name, ".cap")) > 1, 1, 0),
+                                                           get_global(EAS, paste0(paramList$printerRobot$name, ".pop")) > 1, 1, 0),
                                mod = "+"
                     ) %>%
                                    timeout(function() rtri(1, 
@@ -298,7 +298,7 @@ manufacturingTraj <- trajectory(name = "manufacturing") %>%
                     # input buffer SR component:
                     set_global(keys = paste0(paramList$manufacturingModule$name, ".srr"),
                                value = function() ifelse(get_queue_count(EAS, paramList$manufacturingModule$name)/
-                                                           get_global(EAS, paste0(paramList$manufacturingModule$name, ".cap")) > 1, 1, 0),
+                                                           get_global(EAS, paste0(paramList$manufacturingModule$name, ".pop")) > 1, 1, 0),
                                mod = "+"
                     ) %>%
                                    timeout(function() rtri(1, 
@@ -352,7 +352,7 @@ assemblingTraj <- trajectory(name = "assembling") %>%
                                    # input buffer SR component:
                                    set_global(keys = paste0(paramList$assemblyRobot$name, ".srr"),
                                               value = function() ifelse(get_queue_count(EAS, paramList$assemblyRobot$name)/
-                                                                          get_global(EAS, paste0(paramList$assemblyRobot$name, ".cap")) > 1, 1, 0),
+                                                                          get_global(EAS, paste0(paramList$assemblyRobot$name, ".pop")) > 1, 1, 0),
                                               mod = "+"
                                    ) %>%
                                    timeout(function() rtri(1, 
@@ -363,16 +363,50 @@ assemblingTraj <- trajectory(name = "assembling") %>%
                                    process(consumes = paramList$entity$shell$name, creates = paramList$entity$habitation$name, i = 1, o = 0, att = "shelR") %>%
                                    process(consumes = paramList$entity$equipment$name, creates = paramList$entity$blankModule$name, i = 1, o = 1, att = "hab") %>% 
                                    release(paramList$assemblyRobot$name)%>%
-                                   branch(option = function() ifelse(get_global(EAS, paste0(paramList$entity$lifeSupport$name, ".pop")) >= 
-                                                                       get_global(EAS, paste0(paramList$entity$habitation$name, ".pop")), 1, 2),
+                                   branch(option = function() ifelse(get_global(EAS, "occupancy.kpi") > 4, 1 ,2 ),
                                           continue = c(FALSE, FALSE),
-                                          trajectory() %>% process(consumes = paramList$entity$blankModule$name,
-                                                                   creates = paramList$entity$habitation$name,
-                                                                   i = 1, o = 1, att = "hab"),
-                                          trajectory() %>% process(consumes = paramList$entity$blankModule$name,
-                                                                   creates = paramList$entity$lifeSupport$name,
-                                                                   i = 1, o = 1, att = "hab")
+                                          trajectory() %>% branch(option = function() ifelse(get_global(EAS, paste0(paramList$entity$lifeSupport$name, ".pop")) >= 
+                                                                                                get_global(EAS, paste0(paramList$entity$habitation$name, ".pop")), 1, 2),
+                                                                   continue = c(FALSE, FALSE),
+                                                                   trajectory() %>% process(consumes = paramList$entity$blankModule$name,
+                                                                                            creates = paramList$entity$habitation$name,
+                                                                                            i = 1, o = 1, att = "hab"),
+                                                                   trajectory() %>% process(consumes = paramList$entity$blankModule$name,
+                                                                                            creates = paramList$entity$lifeSupport$name,
+                                                                                            i = 1, o = 1, att = "lif")
+                                                                  ),
+                                          trajectory() %>% branch(option = function() round(runif(1, min = 0.51, max = 9.49)), 
+                                                                  continue = c(FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
+                                                                  trajectory() %>% process(consumes = paramList$entity$blankModule$name,
+                                                                                           creates = paramList$miningModule$name,
+                                                                                           i = 1, o = 1, att = "min"),
+                                                                  trajectory() %>% process(consumes = paramList$entity$blankModule$name,
+                                                                                           creates = paramList$processingModule$name,
+                                                                                           i = 1, o = 1, att = "pro"),
+                                                                  trajectory() %>% process(consumes = paramList$entity$blankModule$name,
+                                                                                           creates = paramList$printerRobot$name,
+                                                                                           i = 1, o = 1, att = "pri"),
+                                                                  trajectory() %>% process(consumes = paramList$entity$blankModule$name,
+                                                                                           creates = paramList$manufacturingModule$name,
+                                                                                           i = 1, o = 1, att = "man"),
+                                                                  trajectory() %>% process(consumes = paramList$entity$blankModule$name,
+                                                                                           creates = paramList$assemblyRobot$name,
+                                                                                           i = 1, o = 1, att = "assR"),
+                                                                  trajectory() %>% process(consumes = paramList$entity$blankModule$name,
+                                                                                           creates = paramList$oreStorage$name,
+                                                                                           i = 1, o = 1, att = "orS"),
+                                                                  trajectory() %>% process(consumes = paramList$entity$blankModule$name,
+                                                                                           creates = paramList$refinedStorage$name,
+                                                                                           i = 1, o = 1, att = "rmS"),
+                                                                  trajectory() %>% process(consumes = paramList$entity$blankModule$name,
+                                                                                           creates = paramList$shellStorage$name,
+                                                                                           i = 1, o = 1, att = "shS"),
+                                                                  trajectory() %>% process(consumes = paramList$entity$blankModule$name,
+                                                                                           creates = paramList$equipmentStorage$name,
+                                                                                           i = 1, o = 1, att = "eqS")
+                                          )
                                    ),
+                                   
                                  
                                  # equipment storage is fully depleted:
                                  trajectory() %>% 

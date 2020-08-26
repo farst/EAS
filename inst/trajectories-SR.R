@@ -1,6 +1,8 @@
 library(simmer)
 library(EnvStats)
 
+EAS <- simmer()
+
 sandGlass <- trajectory(name = "sandGlass") %>% 
   # initialize storage / asteroid resource parameters
   set_global(keys = paste0(paramList$resource$asteroid$name, ".pop"), 

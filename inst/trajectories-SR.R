@@ -204,21 +204,34 @@ processingTraj <- trajectory(name = "processing") %>%
                                                          , 1, 0),
                                mod = "+"
                     ) %>%
-                                   activate("refined_material_pri") %>% 
-                                   activate("refined_material_equi"),
+                                   branch(option = function() ifelse(get_global(EAS, keys = paste0(paramList$entity$shell$name, ".pop")) >
+                                                                       get_global(EAS, keys = paste0(paramList$entity$equipment$name, ".pop")), 1,2),
+                                          continue = c(FALSE, FALSE),
+                                          trajectory() %>% activate("refined_material_equi"),
+                                          trajectory() %>% activate("refined_material_pri")
+                                          ),
                                  # refined material storage is full:
                                  trajectory() %>% 
                                    log_("refined storage is full") %>% 
-                                   activate("refined_material_pri") %>% 
-                                   activate("refined_material_equi") %>%
+                    release(resource = paramList$processingModule$name) %>%
+                    branch(option = function() ifelse(get_global(EAS, keys = paste0(paramList$entity$shell$name, ".pop")) >
+                                                        get_global(EAS, keys = paste0(paramList$entity$equipment$name, ".pop")), 1,2),
+                           continue = c(FALSE, FALSE),
+                           trajectory() %>% activate("refined_material_equi"),
+                           trajectory() %>% activate("refined_material_pri")
+                    ) %>%
                                    release(resource = paramList$processingModule$name)
          ),
          # ore storage is empty:
          trajectory() %>% 
            log_("ore storages are fully depleted") %>% 
            release(resource = paramList$processingModule$name) %>% 
-           activate("refined_material_pri") %>% 
-           activate("refined_material_equi")
+           branch(option = function() ifelse(get_global(EAS, keys = paste0(paramList$entity$shell$name, ".pop")) >
+                                               get_global(EAS, keys = paste0(paramList$entity$equipment$name, ".pop")), 1,2),
+                  continue = c(FALSE, FALSE),
+                  trajectory() %>% activate("refined_material_equi"),
+                  trajectory() %>% activate("refined_material_pri")
+           )
   )
 
 
@@ -363,6 +376,11 @@ assemblingTraj <- trajectory(name = "assembling") %>%
                                                                           get_global(EAS, paste0(paramList$assemblyRobot$name, ".pop")) > 1, 1, 0),
                                               mod = "+"
                                    ) %>%
+                                   set_global(keys = paste0(paramList$recyclingModule$name, ".srr"),
+                                              value = function() ifelse(get_queue_count(EAS, paramList$recyclingModule$name)/
+                                                                          get_global(EAS, paste0(paramList$recyclingModule$name, ".pop")) > 1, 1, 0),
+                                              mod = "+"
+                                   ) %>%
                                    timeout(function() rtri(1, 
                                                            min = paramList$assemblyRobot$processingTime$min,
                                                            mode = paramList$assemblyRobot$processingTime$mode,
@@ -378,10 +396,34 @@ assemblingTraj <- trajectory(name = "assembling") %>%
                                                                    continue = c(FALSE, FALSE),
                                                                    trajectory() %>% process(consumes = paramList$entity$blankModule$name,
                                                                                             creates = paramList$entity$habitation$name,
-                                                                                            i = 1, o = 1, att = "hab"),
+                                                                                            i = 1, o = 1, att = "hab") %>% 
+                                                                    timeout(function() rtri(1, min = paramList$habitationModule$lifeTime$min,
+                                                                                            mode = paramList$habitationModule$lifeTime$mode,
+                                                                                            max = paramList$habitationModule$lifeTime$max)
+                                                                    ) %>% 
+                                                                    seize(paramList$recyclingModule$name) %>% 
+                                                                    timeout(function() rtri(1, min = paramList$recyclingModule$processingTime$min,
+                                                                                            mode = paramList$recyclingModule$processingTime$mode,
+                                                                                            max = paramList$recyclingModule$processingTime$max)) %>% 
+                                                                    process(consumes = paramList$entity$habitation$name,
+                                                                            creates = paramList$entity$refinedMaterial$name,
+                                                                            i = 1, o = 0.5, att = "ref") %>% 
+                                                                    release(paramList$recyclingModule$name),
                                                                    trajectory() %>% process(consumes = paramList$entity$blankModule$name,
                                                                                             creates = paramList$entity$lifeSupport$name,
-                                                                                            i = 1, o = 1, att = "lif")
+                                                                                            i = 1, o = 1, att = "lif") %>% 
+                                                                    timeout(function() rtri(1, min = paramList$bioModule$lifeTime$min,
+                                                                                            mode = paramList$bioModule$lifeTime$mode,
+                                                                                            max = paramList$bioModule$lifeTime$max)
+                                                                    ) %>% 
+                                                                    seize(paramList$recyclingModule$name) %>% 
+                                                                    timeout(function() rtri(1, min = paramList$recyclingModule$processingTime$min,
+                                                                                            mode = paramList$recyclingModule$processingTime$mode,
+                                                                                            max = paramList$recyclingModule$processingTime$max)) %>% 
+                                                                    process(consumes = paramList$entity$lifeSupport$name,
+                                                                            creates = paramList$entity$refinedMaterial$name,
+                                                                            i = 1, o = 0.5, att = "ref") %>% 
+                                                                    release(paramList$recyclingModule$name)
                                                                   ),
                                           trajectory() %>% branch(option = function() findSrPriority(EAS,
                                                                                                      modules = c(paste0(paramList$miningModule$name, ".srr"),
@@ -413,7 +455,13 @@ assemblingTraj <- trajectory(name = "assembling") %>%
                                                                     process(consumes = paramList$miningModule$name,
                                                                             creates = paramList$entity$refinedMaterial$name,
                                                                             i = 1, o = 0.5, att = "ref") %>% 
-                                                                    release(paramList$recyclingModule$name),
+                                                                    release(paramList$recyclingModule$name) %>% 
+                                                                    branch(option = function() ifelse(get_global(EAS, keys = paste0(paramList$entity$shell$name, ".pop")) >
+                                                                                                        get_global(EAS, keys = paste0(paramList$entity$equipment$name, ".pop")), 1,2),
+                                                                           continue = c(FALSE, FALSE),
+                                                                           trajectory() %>% activate("refined_material_equi"),
+                                                                           trajectory() %>% activate("refined_material_pri")
+                                                                    ),
                                                                   
                                                                   trajectory() %>% 
                                                                     set_global(paste0(paramList$processingModule$name, ".srr"),
@@ -432,7 +480,13 @@ assemblingTraj <- trajectory(name = "assembling") %>%
                                                                     process(consumes = paramList$processingModule$name,
                                                                             creates = paramList$entity$refinedMaterial$name,
                                                                             i = 1, o = 0.5, att = "ref") %>% 
-                                                                    release(paramList$recyclingModule$name),
+                                                                    release(paramList$recyclingModule$name) %>% 
+                                            branch(option = function() ifelse(get_global(EAS, keys = paste0(paramList$entity$shell$name, ".pop")) >
+                                                                                get_global(EAS, keys = paste0(paramList$entity$equipment$name, ".pop")), 1,2),
+                                                   continue = c(FALSE, FALSE),
+                                                   trajectory() %>% activate("refined_material_equi"),
+                                                   trajectory() %>% activate("refined_material_pri")
+                                            ),
                                                                   
                                                                   trajectory() %>% 
                                                                     set_global(paste0(paramList$printerRobot$name, ".srr"),
@@ -451,7 +505,13 @@ assemblingTraj <- trajectory(name = "assembling") %>%
                                                                     process(consumes = paramList$printerRobot$name,
                                                                             creates = paramList$entity$refinedMaterial$name,
                                                                             i = 1, o = 0.5, att = "ref") %>% 
-                                                                    release(paramList$recyclingModule$name),
+                                                                    release(paramList$recyclingModule$name) %>% 
+                                            branch(option = function() ifelse(get_global(EAS, keys = paste0(paramList$entity$shell$name, ".pop")) >
+                                                                                get_global(EAS, keys = paste0(paramList$entity$equipment$name, ".pop")), 1,2),
+                                                   continue = c(FALSE, FALSE),
+                                                   trajectory() %>% activate("refined_material_equi"),
+                                                   trajectory() %>% activate("refined_material_pri")
+                                            ),
                                                                   
                                                                   trajectory() %>% 
                                                                     set_global(paste0(paramList$manufacturingModule$name, ".srr"),
@@ -470,7 +530,13 @@ assemblingTraj <- trajectory(name = "assembling") %>%
                                                                     process(consumes = paramList$manufacturingModule$name,
                                                                             creates = paramList$entity$refinedMaterial$name,
                                                                             i = 1, o = 0.5, att = "ref") %>% 
-                                                                    release(paramList$recyclingModule$name),
+                                                                    release(paramList$recyclingModule$name) %>% 
+                                   branch(option = function() ifelse(get_global(EAS, keys = paste0(paramList$entity$shell$name, ".pop")) >
+                                                                       get_global(EAS, keys = paste0(paramList$entity$equipment$name, ".pop")), 1,2),
+                                          continue = c(FALSE, FALSE),
+                                          trajectory() %>% activate("refined_material_equi"),
+                                          trajectory() %>% activate("refined_material_pri")
+                                   ),
                                                                   
                                                                   trajectory() %>% 
                                                                     set_global(paste0(paramList$assemblyRobot$name, ".srr"),
@@ -489,7 +555,13 @@ assemblingTraj <- trajectory(name = "assembling") %>%
                                                                     process(consumes = paramList$assemblyRobot$name,
                                                                             creates = paramList$entity$refinedMaterial$name,
                                                                             i = 1, o = 0.5, att = "ref") %>% 
-                                                                    release(paramList$recyclingModule$name),
+                                                                    release(paramList$recyclingModule$name) %>% 
+                                   branch(option = function() ifelse(get_global(EAS, keys = paste0(paramList$entity$shell$name, ".pop")) >
+                                                                       get_global(EAS, keys = paste0(paramList$entity$equipment$name, ".pop")), 1,2),
+                                          continue = c(FALSE, FALSE),
+                                          trajectory() %>% activate("refined_material_equi"),
+                                          trajectory() %>% activate("refined_material_pri")
+                                   ),
                                                                   
                                                                   trajectory() %>% 
                                                                     set_global(paste0(paramList$recyclingModule$name, ".srr"),
@@ -508,7 +580,13 @@ assemblingTraj <- trajectory(name = "assembling") %>%
                                                                     process(consumes = paramList$recyclingModule$name,
                                                                             creates = paramList$entity$refinedMaterial$name,
                                                                             i = 1, o = 0.5, att = "ref") %>% 
-                                                                    release(paramList$recyclingModule$name),
+                                                                    release(paramList$recyclingModule$name) %>% 
+                                   branch(option = function() ifelse(get_global(EAS, keys = paste0(paramList$entity$shell$name, ".pop")) >
+                                                                       get_global(EAS, keys = paste0(paramList$entity$equipment$name, ".pop")), 1,2),
+                                          continue = c(FALSE, FALSE),
+                                          trajectory() %>% activate("refined_material_equi"),
+                                          trajectory() %>% activate("refined_material_pri")
+                                   ),
                                                                   
                                                                   trajectory() %>%   
                                                                     set_global(paste0(paramList$oreStorage$name, ".srr"),
@@ -527,7 +605,13 @@ assemblingTraj <- trajectory(name = "assembling") %>%
                                                                     process(consumes = paramList$oreStorage$name,
                                                                             creates = paramList$entity$refinedMaterial$name,
                                                                             i = 1, o = 0.5, att = "ref") %>% 
-                                                                    release(paramList$recyclingModule$name),
+                                                                    release(paramList$recyclingModule$name) %>% 
+                                   branch(option = function() ifelse(get_global(EAS, keys = paste0(paramList$entity$shell$name, ".pop")) >
+                                                                       get_global(EAS, keys = paste0(paramList$entity$equipment$name, ".pop")), 1,2),
+                                          continue = c(FALSE, FALSE),
+                                          trajectory() %>% activate("refined_material_equi"),
+                                          trajectory() %>% activate("refined_material_pri")
+                                   ),
                                                                   
                                                                   trajectory() %>% 
                                                                     set_global(paste0(paramList$refinedStorage$name, ".srr"),
@@ -546,7 +630,13 @@ assemblingTraj <- trajectory(name = "assembling") %>%
                                                                     process(consumes = paramList$refinedStorage$name,
                                                                             creates = paramList$entity$refinedMaterial$name,
                                                                             i = 1, o = 0.5, att = "ref") %>% 
-                                                                    release(paramList$recyclingModule$name),
+                                                                    release(paramList$recyclingModule$name) %>% 
+                                   branch(option = function() ifelse(get_global(EAS, keys = paste0(paramList$entity$shell$name, ".pop")) >
+                                                                       get_global(EAS, keys = paste0(paramList$entity$equipment$name, ".pop")), 1,2),
+                                          continue = c(FALSE, FALSE),
+                                          trajectory() %>% activate("refined_material_equi"),
+                                          trajectory() %>% activate("refined_material_pri")
+                                   ),
                                                                   
                                                                   trajectory() %>% 
                                                                     set_global(paste0(paramList$shellStorage$name, ".srr"),
@@ -565,7 +655,13 @@ assemblingTraj <- trajectory(name = "assembling") %>%
                                                                     process(consumes = paramList$shellStorage$name,
                                                                             creates = paramList$entity$refinedMaterial$name,
                                                                             i = 1, o = 0.5, att = "ref") %>% 
-                                                                    release(paramList$recyclingModule$name),
+                                                                    release(paramList$recyclingModule$name)%>% 
+                                   branch(option = function() ifelse(get_global(EAS, keys = paste0(paramList$entity$shell$name, ".pop")) >
+                                                                       get_global(EAS, keys = paste0(paramList$entity$equipment$name, ".pop")), 1,2),
+                                          continue = c(FALSE, FALSE),
+                                          trajectory() %>% activate("refined_material_equi"),
+                                          trajectory() %>% activate("refined_material_pri")
+                                   ),
                                                                   
                                                                   trajectory() %>% 
                                                                     set_global(paste0(paramList$equipmentStorage$name, ".srr"),
@@ -584,7 +680,13 @@ assemblingTraj <- trajectory(name = "assembling") %>%
                                                                     process(consumes = paramList$equipmentStorage$name,
                                                                             creates = paramList$entity$refinedMaterial$name,
                                                                             i = 1, o = 0.5, att = "ref") %>% 
-                                                                    release(paramList$recyclingModule$name)
+                                                                    release(paramList$recyclingModule$name)%>% 
+                                   branch(option = function() ifelse(get_global(EAS, keys = paste0(paramList$entity$shell$name, ".pop")) >
+                                                                       get_global(EAS, keys = paste0(paramList$entity$equipment$name, ".pop")), 1,2),
+                                          continue = c(FALSE, FALSE),
+                                          trajectory() %>% activate("refined_material_equi"),
+                                          trajectory() %>% activate("refined_material_pri")
+                                   )
                                           )
                                    ),
                                    

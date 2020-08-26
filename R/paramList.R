@@ -9,12 +9,22 @@ paramList <- list(
       max  = 35
     ),
     capacity = 1,
-    srr = 0
+    srr = 0,
+    lifeTime = list(
+      min = 100,
+      mode = 150,
+      max = 200
+    )
   ),
   oreStorage = list(
     name = "oreStorage",
     initialCapacity = 10,
-    srr = 0
+    srr = 0,
+    lifeTime = list(
+      min = 100,
+      mode = 150,
+      max = 200
+    )
   ),
   processingModule = list(
     name = "processingModule",
@@ -24,12 +34,22 @@ paramList <- list(
       max  = 70
     ),
     capacity = 1,
-    srr = 0
+    srr = 0,
+    lifeTime = list(
+      min = 100,
+      mode = 150,
+      max = 200
+    )
   ),
   refinedStorage = list(
     name = "refinedStorage",
     initialCapacity = 10,
-    srr = 0
+    srr = 0,
+    lifeTime = list(
+      min = 100,
+      mode = 150,
+      max = 200
+    )
   ),
   recyclingModule = list(
     name = "recyclingModule",
@@ -39,7 +59,12 @@ paramList <- list(
       max  = 49
     ),
     capacity = 1,
-    srr = 0
+    srr = 0,
+    lifeTime = list(
+      min = 100,
+      mode = 150,
+      max = 200
+    )
   ),
   printerRobot = list(
     name = "printerRobot",
@@ -49,12 +74,22 @@ paramList <- list(
       max  = 35
     ),
     capacity = 1,
-    srr = 0
+    srr = 0,
+    lifeTime = list(
+      min = 100,
+      mode = 150,
+      max = 200
+    )
   ),
   shellStorage = list(
     name = "shellStorage",
     initialCapacity = 10,
-    srr = 0
+    srr = 0,
+    lifeTime = list(
+      min = 100,
+      mode = 150,
+      max = 200
+    )
   ),
   manufacturingModule = list(
     name = "manufacturingModule",
@@ -64,12 +99,22 @@ paramList <- list(
       max  = 49
     ),
     capacity = 1,
-    srr = 0
+    srr = 0,
+    lifeTime = list(
+      min = 100,
+      mode = 150,
+      max = 200
+    )
   ),
   equipmentStorage = list(
     name = "equipmentStorage",
     initialCapacity = 10,
-    srr = 0
+    srr = 0,
+    lifeTime = list(
+      min = 100,
+      mode = 150,
+      max = 200
+    )
   ),
   assemblyRobot = list(
     name = "assemblyRobot",
@@ -79,16 +124,29 @@ paramList <- list(
       max  = 20
     ),
     capacity = 1,
-    srr = 0
+    srr = 0,
+    lifeTime = list(
+      min = 100,
+      mode = 150,
+      max = 200
+    )
   ),
   habitationModule = list(
     name = "habitationModule",
-    lifeTime = 10,
+    lifeTime = list(
+      min = 100,
+      mode = 150,
+      max = 200
+    ),
     population = 1
   ),
   bioModule = list(
     name = "bioModule",
-    lifeTime = 10,
+    lifeTime = list(
+      min = 100,
+      mode = 150,
+      max = 200
+    ),
     population = 1
   ),
   entity = list(

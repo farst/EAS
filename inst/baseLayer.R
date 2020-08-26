@@ -16,7 +16,8 @@ EAS %>%
   add_generator("refined_material_equi", manufacturingTraj, when_activated(1)) %>% 
   add_resource(paramList$manufacturingModule$name, paramList$manufacturingModule$capacity) %>%
   add_generator("assembly_order", assemblingTraj, when_activated(1)) %>% 
-  add_resource(paramList$assemblyRobot$name, paramList$assemblyRobot$capacity)
+  add_resource(paramList$assemblyRobot$name, paramList$assemblyRobot$capacity) %>%
+  add_resource(paramList$recyclingModule$name, paramList$recyclingModule$capacity)
 
 EAS %>% run(10000)
 DT <- as.data.table(EAS %>% get_mon_attributes())

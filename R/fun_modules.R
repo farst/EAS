@@ -132,3 +132,10 @@ findSrPriority <- function(.env = EAS, modules){
   df <- df[order(-srr),]
   return(df$srrTraj[1])
 }
+
+getModuleType <- function(.env = EAS, atts){
+  attVec <- get_attribute(.env = .env, atts)
+  df <- data.frame("recTraj" = 1:length(atts), "attKey" = atts, "attVal" = attVec)
+  df <- df[order(-attVal),]
+  return(df$recTraj[1])
+}

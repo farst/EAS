@@ -21,9 +21,9 @@ paramList <- list(
     initialCapacity = 10,
     srr = 0,
     lifeTime = list(
-      min = 100,
-      mode = 150,
-      max = 200
+      min = 200,
+      mode = 250,
+      max = 400
     )
   ),
   processingModule = list(
@@ -36,9 +36,9 @@ paramList <- list(
     capacity = 1,
     srr = 0,
     lifeTime = list(
-      min = 100,
-      mode = 150,
-      max = 200
+      min = 200,
+      mode = 350,
+      max = 500
     )
   ),
   refinedStorage = list(
@@ -46,9 +46,9 @@ paramList <- list(
     initialCapacity = 10,
     srr = 0,
     lifeTime = list(
-      min = 100,
-      mode = 150,
-      max = 200
+      min = 500,
+      mode = 550,
+      max = 600
     )
   ),
   recyclingModule = list(
@@ -61,9 +61,9 @@ paramList <- list(
     capacity = 1,
     srr = 0,
     lifeTime = list(
-      min = 100,
-      mode = 150,
-      max = 200
+      min = 400,
+      mode = 450,
+      max = 500
     )
   ),
   printerRobot = list(
@@ -76,9 +76,9 @@ paramList <- list(
     capacity = 1,
     srr = 0,
     lifeTime = list(
-      min = 100,
-      mode = 150,
-      max = 200
+      min = 300,
+      mode = 350,
+      max = 400
     )
   ),
   shellStorage = list(
@@ -86,9 +86,9 @@ paramList <- list(
     initialCapacity = 10,
     srr = 0,
     lifeTime = list(
-      min = 100,
-      mode = 150,
-      max = 200
+      min = 400,
+      mode = 550,
+      max = 600
     )
   ),
   manufacturingModule = list(
@@ -101,9 +101,9 @@ paramList <- list(
     capacity = 1,
     srr = 0,
     lifeTime = list(
-      min = 100,
-      mode = 150,
-      max = 200
+      min = 300,
+      mode = 350,
+      max = 400
     )
   ),
   equipmentStorage = list(
@@ -111,9 +111,9 @@ paramList <- list(
     initialCapacity = 10,
     srr = 0,
     lifeTime = list(
-      min = 100,
-      mode = 150,
-      max = 200
+      min = 500,
+      mode = 550,
+      max = 600
     )
   ),
   assemblyRobot = list(
@@ -126,26 +126,26 @@ paramList <- list(
     capacity = 1,
     srr = 0,
     lifeTime = list(
-      min = 100,
-      mode = 150,
-      max = 200
+      min = 400,
+      mode = 450,
+      max = 500
     )
   ),
   habitationModule = list(
     name = "habitationModule",
     lifeTime = list(
-      min = 100,
-      mode = 150,
-      max = 200
+      min = 600,
+      mode = 750,
+      max = 900
     ),
     population = 1
   ),
   bioModule = list(
     name = "bioModule",
     lifeTime = list(
-      min = 100,
-      mode = 150,
-      max = 200
+      min = 200,
+      mode = 250,
+      max = 300
     ),
     population = 1
   ),
@@ -171,12 +171,12 @@ paramList <- list(
       live.pop = 0
     ),
     habitation = list(
-      name = "habitation",
+      name = "habitationModule",
       initial.pop = 5,
       live.pop = 0
     ),
     lifeSupport = list(
-      name = "lifeSupport",
+      name = "bioModule",
       initial.pop = 5,
       live.pop = 0
     ),
@@ -189,7 +189,7 @@ paramList <- list(
   resource = list(
     asteroid = list(
       name = "asteroid",
-      initial.pop = 100,
+      initial.pop = 300,
       live.pop = 0
     ) 
   ),

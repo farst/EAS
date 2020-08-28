@@ -1,7 +1,10 @@
-library(simmer)
-library(plotly)
-library(data.table)
-
+library(simmer, quietly = TRUE)
+library(plotly, quietly = TRUE)
+library(EnvStats, quietly = TRUE)
+library(data.table, quietly = TRUE)
+source("R/fun_modules.R", echo = FALSE)
+source("R/paramList.R", echo = FALSE)
+source("inst/trajectories-SR.R", echo = FALSE)
 EAS <- simmer()
 reset(EAS)
 EAS %>% 
@@ -19,7 +22,7 @@ EAS %>%
   add_resource(paramList$assemblyRobot$name, paramList$assemblyRobot$capacity) %>%
   add_resource(paramList$recyclingModule$name, paramList$recyclingModule$capacity)
 
-EAS %>% run(10000)
+EAS %>% run(10000, progress=progress::progress_bar$new()$update)
 DT <- as.data.table(EAS %>% get_mon_attributes())
 DT[key == "human.pop", value := round(value)]
 DT2 <- as.data.table(EAS %>% get_mon_resources())
@@ -37,8 +40,16 @@ fig1 <- plot_ly(DT2, x=~time, y=~queue, split=~resource, type="scatter", mode="l
 # dcast(DT , time~key, value.var = "value") 
 fig2 <- plot_ly(DT[key %in% paste0(resources, ".pop")], x=~time, y=~value, split=~key, type="scatter", mode="lines")# %>% layout(title = "entities")
 fig3 <- plot_ly(DT[key %in% paste0(entities, ".pop")], x=~time, y=~value, split=~key, type="scatter", mode="lines")# %>% layout(title = "entities")
-fig4 <- plot_ly(DT[key %in% paste0(resources, ".pop")], x=~time, y=~value, split=~key, type="scatter", mode="lines")# %>% layout(title = "entities")
+fig4 <- plot_ly(DT[grepl("human", key)], x=~time, y=~value, split=~key, type="scatter", mode="lines")
 fig5 <- plot_ly(DT[grepl("kpi", key)], x=~time, y=~value, split=~key, type="scatter", mode="lines")
 fig6 <- plot_ly(DT[grepl("srr", key)], x=~time, y=~value, split=~key, type="scatter", mode="lines")# %>% layout(title = "srr")
 
-subplot(fig1, fig2, fig3, fig4, fig5, fig6, nrows = 2, shareX = T)
+#subplot(fig1, fig2, fig3, fig4,fig5,fig6, nrows = 2, shareX = T)
+splt <- subplot( fig2, fig3, fig4,fig5,nrows = 2, shareX = T)
+splt %>% layout(annotations = list(
+  list(x = 0.02 , y = 1.01, text = "Modules and Robots", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.82 , y = 1.01, text = "Resources and Entities", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.02 , y = 0.48, text = "Human population", showarrow = F, xref='paper', yref='paper'),
+  list(x = 0.8 , y = 0.48, text = "Average occupancy", showarrow = F, xref='paper', yref='paper')
+  )
+)

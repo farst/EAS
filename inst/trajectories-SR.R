@@ -390,6 +390,7 @@ miningTraj <- trajectory(name = "mining") %>%
   branch(option = function() ifelse(get_global(EAS, paste0(paramList$resource$asteroid$name, ".pop")) > 0, 1,2),
          continue = c(FALSE,FALSE),
          # asteroid still has resources to mine
+         # TODO add explanation of 50% rule
          trajectory() %>% 
            set_global(keys = paste0(paramList$miningModule$name, ".srr"),
                       value = function() round(1 - (get_global(EAS, paste0(paramList$entity$ore$name, ".pop"))/
@@ -538,7 +539,7 @@ printingTraj <- trajectory(name = "printing") %>%
                                    )%>%  
                                    process(consumes = paramList$entity$refinedMaterial$name,
                                            creates = paramList$entity$shell$name,
-                                           i = 0.75, o = 1, att = "shell") %>%
+                                           i = 0.57, o = 1, att = "shell") %>%
                                    release(paramList$printerRobot$name) %>% 
                     # shell storage SR mechanics:
                     set_global(paste0(paramList$shellStorage$name, ".srr"),

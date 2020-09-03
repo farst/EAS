@@ -22,7 +22,7 @@ EAS %>%
   add_resource(paramList$assemblyRobot$name, paramList$assemblyRobot$capacity) %>%
   add_resource(paramList$recyclingModule$name, paramList$recyclingModule$capacity)
 
-EAS %>% run(10000, progress=progress::progress_bar$new()$update)
+EAS %>% run(20000, progress=progress::progress_bar$new()$update)
 DT <- as.data.table(EAS %>% get_mon_attributes())
 DT[key == "human.pop", value := round(value)]
 DT2 <- as.data.table(EAS %>% get_mon_resources())
